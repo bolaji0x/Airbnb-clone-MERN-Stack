@@ -1,0 +1,142 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+/* fonts */
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+html {
+  font-size: 100%;
+} /*16px*/
+
+
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+:root {
+  /* colors */
+  --primary-100: #bef8fd;
+  --primary-500: #2cb1bc;
+  /* black */
+  --black-100: #1c1c1c;
+  --black-200: #585757;
+  --black-300: #969696;
+  --black-400: #e4e4e4;
+  --black-500: #f7f7f7;
+
+  /* green */
+  --green-100: #00b517;
+  --green-500: #e5f7e7;
+ 
+
+  /* red */
+  --red-100: #fa3434;
+  --red-500: #feeaea;
+
+
+  /* pink */
+  --pink-100: #1c1c1c;
+
+ 
+  /* rest of the colors */
+  --black: #222;
+  --white: #fff;
+  --border-color: #eaf1fb;
+
+  
+  --small-text: 0.875rem;
+  --extra-small-text: 0.7em;
+  --thick-font: 400;
+  --thicker-font: 600;
+
+  /* rest of the vars */
+  --backgroundColor: var(--grey-50);
+  --textColor: var(--grey-900);
+  --borderRadius: 0.35rem;
+  --letterSpacing: 1px;
+  --transition: 0.3s ease-in-out all;
+  --max-width: 1270px;
+  --fixed-width: 500px;
+  --fluid-width: 90vw;
+  --breakpoint-lg: 992px;
+  --nav-height: 6rem;
+  /* box shadow*/
+  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 2px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bodyFont);
+  color: var(--black-200);
+  line-height: 1.75;
+  font-weight: var(--thick-font);
+  background-color: var(--white);
+}
+
+h1, h2, h3, h4, p, img {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.loading-center {
+  margin: 0 auto;
+}
+
+.top-loading {
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.loading {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  border-top-color: var(--blue-100);
+  animation: spinner 0.6s linear infinite;
+}
