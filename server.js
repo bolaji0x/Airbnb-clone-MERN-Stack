@@ -3,28 +3,28 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 require('express-async-errors');
-const fileUpload = require("express-fileupload");
-const morgan = require('morgan');
 
+const morgan = require('morgan');
 const path = require('path');
 const helmet = require('helmet');
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
-const bodyParser = require("body-parser");
+
+
 // hello
 // db and authenticateUser
 const connectDB = require('./db/connect.js');
 
 // routers
 const authRouter = require('./routes/authRoutes.js');
-
+const listingRouter = require('./routes/listingRoutes.js')
 
 // middleware
 const notFoundMiddleware = require('./middleware/not-found.js');
 const errorHandlerMiddleware = require('./middleware/error-handler.js');
-const {auth, authBuyer} = require('./middleware/auth.js');
+const {auth} = require('./middleware/auth.js');
 
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
@@ -32,24 +32,18 @@ if (process.env.NODE_ENV !== 'production') {
 
 // only when ready to deploy 
 
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(fileUpload());
-app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      "img-src": ["'self'", "https: data:"]
-    }
-  })
-)
+
+
 app.use(xss());
 app.use(mongoSanitize());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/listings', listingRouter)
 // only when ready to deploy
 
 /*
