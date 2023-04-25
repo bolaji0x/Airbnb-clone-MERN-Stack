@@ -25,7 +25,7 @@ img {
   --primary-100: #bef8fd;
   --primary-500: #2cb1bc;
   /* black */
-  --black-100: #1c1c1c;
+  --black-100: #444444;
   --black-200: #585757;
   --black-300: #969696;
   --black-400: #e4e4e4;
@@ -37,7 +37,7 @@ img {
  
 
   /* red */
-  --red-100: #fa3434;
+  --red-100: #ff385c;
   --red-500: #feeaea;
 
 
@@ -140,3 +140,122 @@ ul, li {
   border-top-color: var(--blue-100);
   animation: spinner 0.6s linear infinite;
 }
+
+.logo {
+  width: 70px;
+  height: auto;
+}
+
+/* ====== Navbar Container ====== */
+
+.nav-container {
+  max-width: 1400px;
+  width: calc(100% - 2rem);
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+header {
+  psition: fixed;
+  border-bottom: 1px solid var(--border-color);
+  pading-bottom: 1.5rem;
+}
+
+.any-container {
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-3);
+  border-radius: 25px;
+  padding: .5rem 0;
+}
+
+.each-any {
+  fnt-weight: var(--thicker-font);
+  font-size: 13px;
+  padding: 0 15px;
+  magin-left: 5px;
+}
+
+.any-btn {
+  border-right: 1px solid var(--border-color);
+}
+
+.guest-label {
+  font-size: 13px;
+}
+
+.search-btn {
+  background-color: var(--red-100);
+  pading: .3rem;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin-right: 8px;
+}
+
+.search-icon {
+  font-size: 10px;
+  color: var(--white);
+}
+ 
+.right-nav {
+  display: flex;
+}
+
+.each-rn {
+  margin-left: 15px;
+}
+
+.globe-btn {
+  font-size: 1rem;
+}
+
+.bar-user-btn {
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-3);
+  border-radius: 25px;
+  padding: .5rem 1rem;
+}
+
+
+.user-icon {
+  font-size: 1.5rem;
+  margin-left: 15px;
+  color: #444;
+}
+
+
+
+.tabs-container {
+  width: 100%;
+  overflow-x: auto;
+  
+}
+
+.tabs-content {
+  display: flex;
+  border: 1px solid red;
+  width: 150px;
+}
+
+@media screen and (min-width: 680px) {
+  body {
+    margin: 0;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .nav-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
