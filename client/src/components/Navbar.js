@@ -1,8 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from './Logo'
 import { FaBars, FaBed, FaBox, FaBuilding, FaFilter, FaGlobe, FaGreaterThan, FaHockeyPuck, FaHotjar, FaLaptopHouse, FaMugHot, FaRedhat, FaSearch, FaSort, FaUmbrellaBeach, FaUserCircle, FaWater } from 'react-icons/fa'
-import { BiChevronRight, BiSort } from 'react-icons/bi'
+import { BiChevronLeft, BiChevronRight, BiSort } from 'react-icons/bi'
+
+
+const tabs = [
+  { icon: <FaUmbrellaBeach />, label: 'Beachfront' },
+  { icon: <FaLaptopHouse />, label: 'Castles' },
+  { icon: <FaHotjar />, label: 'Trending' },
+  { icon: <FaMugHot />, label: 'Bed & breakfasts' },
+  { icon: <FaWater />, label: 'Lake' },
+  { icon: <FaRedhat />, label: 'OMG!' },
+  { icon: <FaBed />, label: 'Private rooms' },
+  { icon: <FaHockeyPuck />, label: 'Luxe' },
+  { icon: <FaBox />, label: 'Amazing views' },
+  { icon: <FaBuilding />, label: 'Mansions' }
+];
+
+
 const Navbar = () => {
+  const [startIndex, setStartIndex] = useState(0);
+
+  //const visibleTabs = tabs.slice(startIndex, startIndex + 5);
+
+  const handleNextTabClick = () => {
+    let nextIndex = startIndex + 1;
+    if (nextIndex > tabs.length - 7) {
+      nextIndex = tabs.length - 7;
+    }
+    setStartIndex(nextIndex);
+  };
+  
+  const handlePrevTabClick = () => {
+    let prevIndex = startIndex - 1;
+    if (prevIndex < 0) {
+      prevIndex = 0;
+    }
+    setStartIndex(prevIndex);
+  };
+
+  
+
   return (
     <div>
       <header className='header'>
@@ -32,50 +70,37 @@ const Navbar = () => {
       </header>
 
       <div className='tabs-container'>
-        <div className='tabs-content'>
-          <div className='each-tab'>
-            <FaUmbrellaBeach className='tab-icon' />
-            <label className='tab-label'>Beachfront</label>
-          </div>
-          <div className='each-tab'>
-            <FaLaptopHouse className='tab-icon' />
-            <label className='tab-label'>Castles</label>
-          </div>
-          <div className='each-tab'>
-            <FaHotjar className='tab-icon' />
-            <label className='tab-label'>Trending</label>
-          </div>
-          <div className='each-tab'>
-            <FaMugHot className='tab-icon' />
-            <label className='tab-label'>Bed & breakfasts</label>
-          </div>
-          <div className='each-tab'>
-            <FaWater className='tab-icon' />
-            <label className='tab-label'>Lake</label>
-          </div>
-          <div className='each-tab'>
-            <FaRedhat className='tab-icon' />
-            <label className='tab-label'>OMG!</label>
-          </div>
-          <div className='each-tab'>
-            <FaBed className='tab-icon' />
-            <label className='tab-label'>Private rooms</label>
-          </div>
-          <div className='each-tab'>
-            <FaHockeyPuck className='tab-icon' />
-            <label className='tab-label'>Luxe</label>
-          </div>
-          <div className='each-tab'>
-            <FaBox className='tab-icon' />
-            <label className='tab-label'>Amazing views</label>
-          </div>
-          <div className='each-tab'>
-            <FaBuilding className='tab-icon' />
-            <label className='tab-label'>Mansions</label>
-          </div>
+        <div className='l-tabtn'>
+          {startIndex > 0 && (
+            <button className='toggle-tab-btn' onClick={handlePrevTabClick}>
+              <BiChevronLeft className='next-tab-icon' />
+            </button>
+          )}
         </div>
 
-        <button className='next-tab-btn'><BiChevronRight className='next-tab-icon' /></button>
+        <div className='tabs-content'>
+            {tabs.map((tab, index) => {
+              if (index >= startIndex && index < startIndex + 7) {
+                return (
+                  <div className='each-tab' key={index}>
+                    <button className='tab-icon'>{tab.icon}</button>
+                    <label className='tab-label'>{tab.label}</label>
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+        </div>
+
+
+        <div className='r-tbatn'>
+          {startIndex < tabs.length - 7 && (
+            <button className='toggle-tab-btn' onClick={handleNextTabClick}>
+              <BiChevronRight className='next-tab-icon' />
+            </button>
+          )}
+        </div>
 
         <div className='filter-btn'>
           <BiSort className='filter-icon' />
@@ -85,6 +110,7 @@ const Navbar = () => {
       </div>
       
     </div>
+    
   )
 }
 

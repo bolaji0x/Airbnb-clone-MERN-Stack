@@ -12,6 +12,7 @@ function App() {
         
         <Route path='/landing' element={<Landing />} />
         
+        
         <Route path='*' element={<Error />} />
       </Routes>
     </Router>

@@ -227,18 +227,80 @@ header {
 
 
 
+
 .tabs-container {
+  display: flex;
+  align-items: center;
   width: 100%;
-  overflow-x: auto;
+  border: 1px solid red;
   
 }
 
 .tabs-content {
   display: flex;
-  border: 1px solid red;
-  width: 150px;
+  justify-content: space-between;
+  width: 100%;
 }
 
+.each-tab {
+  display: flex;
+  flex-direction: column;
+  magin-left: 1rem;
+}
+.tab-icon {
+  font-size:15px;
+}
+
+.tab-label {
+  font-size: 12px;
+}
+
+.toggle-tab-btn {
+  border: 1px solid var(--border-color);
+  background-color: var(--white);
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.r-tabtn {
+  margin-left: 12px;
+}
+
+.l-tabtn {
+  margin-right: 12px;
+}
+
+.next-tab-icon {
+  
+  font-size: 15px;
+  color: var(--black-100);
+}
+
+/*
+
+.tabs-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 0 16px;
+}
+
+.each-tab {
+  flex: 1 0 200px;
+  margin: 16px;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+*/
 @media screen and (min-width: 680px) {
   body {
     margin: 0;
@@ -258,4 +320,7 @@ header {
     margin-right: auto;
   }
 }
+
+
+
 
