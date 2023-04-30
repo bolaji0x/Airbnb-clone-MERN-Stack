@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Listing from './Listing'
 const ListingContainer = () => {
   return (
-    <div>ListingContainer</div>
+    <div className='bd-container'>
+    <Listing />
+    </div>
   )
 }
 

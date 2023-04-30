@@ -146,60 +146,113 @@ ul, li {
   height: auto;
 }
 
-/* ====== Navbar Container ====== */
-
-.nav-container {
-  max-width: 1400px;
+.bd-container {
+  max-width: 1300px;
   width: calc(100% - 2rem);
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
-header {
-  psition: fixed;
-  border-bottom: 1px solid var(--border-color);
-  pading-bottom: 1.5rem;
+/* ====== Navbar Container ====== */
+
+.nav-container {
+  max-width: 1300px;
+  width: calc(100% - 2rem);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 1rem 0;
 }
 
+.airbnb-logo {
+  display: none;
+}
+
+header {
+  position: fixed;
+  brder-bottom: 1px solid var(--border-color);
+  pading-bottom: 1.5rem;
+  background-color: var(--white);
+  width: 100%;
+  z-index: 88;
+}
+
+
+
 .any-container {
+  position: relative;
   display: flex;
   align-items: center;
   box-shadow: var(--shadow-3);
-  border-radius: 25px;
+  border-radius: 40px;
   padding: .5rem 0;
+  width: 100%;
+  padding-left: 12px;
+}
+
+.any-content {
+  display: grid;
+  padding-left: 2rem;
+  line-height: 1.3;
+}
+
+.anyg {
+  color: var(--black-300);
+}
+
+.week-guest {
+  display: flex;
+  flex-dirction: column;
 }
 
 .each-any {
   fnt-weight: var(--thicker-font);
-  font-size: 13px;
-  padding: 0 15px;
-  magin-left: 5px;
+  font-size: 12px;
+  paddng: 0 15px;
+  margin-right: 10px;
+}
+.anywhere-btn {
+  font-size: 11px;
+  color: var(--black-100);
+  font-weight: var(--thicker-font);
 }
 
 .any-btn {
-  border-right: 1px solid var(--border-color);
+  boder-right: 1px solid var(--border-color);
 }
 
-.guest-label {
-  font-size: 13px;
-}
+
+
+
+
 
 .search-btn {
-  background-color: var(--red-100);
-  pading: .3rem;
+  background-color: none;
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  margin-right: 8px;
 }
 
 .search-icon {
-  font-size: 10px;
-  color: var(--white);
+  font-size: 14px;
+  color: var(--black-100);
+}
+
+.any-search {
+  dispay: flex;
+  position: absolute;
+  eft: 12px;
 }
  
+.any-filter-btn {
+  position: absolute;
+  top: 16px;
+  right: 17px;
+  display: inline;
+}
+
+
 .right-nav {
-  display: flex;
+  display: none;
 }
 
 .each-rn {
@@ -232,7 +285,8 @@ header {
   display: flex;
   align-items: center;
   width: 100%;
-  border: 1px solid red;
+  boder: 1px solid red;
+  margin: 1rem 0;
   
 }
 
@@ -240,6 +294,7 @@ header {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin: 0 10px;
 }
 
 .each-tab {
@@ -261,49 +316,205 @@ header {
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  align-items: center;
-  justify-content: center;
+
   
 }
 
-.r-tabtn {
-  margin-left: 12px;
-}
-
-.l-tabtn {
-  margin-right: 12px;
-}
 
 .next-tab-icon {
-  
-  font-size: 15px;
+  padding-top: 2px;
+  font-size: 22px;
   color: var(--black-100);
 }
 
-/*
-
-.tabs-content {
+.filter-btn {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  overflow-x: auto;
-  max-width: 100%;
-  padding: 0 16px;
-}
-
-.each-tab {
-  flex: 1 0 200px;
-  margin: 16px;
-  background-color: #f2f2f2;
-  text-align: center;
-  padding: 16px;
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
+  padding: .25rem .5rem;
+  margin-left: 1rem;
 }
 
-*/
+.togg-filter {
+  display: none;
+}
+
+
+.filter-icon {
+  font-size: 12px;
+}
+
+.filter-label {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+
+
+.toggle-price-container {
+  max-width: 500px;
+  width: calc(100% - 1rem);
+  margin-left: .5rem;
+  margin-right: .5rem;
+  padding-top: 11rem;
+}
+
+.toggle-price-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: .5rem .75rem;
+  margin-bottom: 1.5rem;
+}
+.right-tpc {
+  display: grid;
+}
+.dtp-text {
+  font-size: 15px;
+  border-right: unset;
+  padding-right: 15px;
+}
+
+.fees-text {
+  color: var(--black-300);
+  font-size: 12px;
+  margin-left: unset;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 37px;
+  height: 28px;
+  margin-top: 5px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 2px;
+  bottom: 2.3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
+.slider.round {
+  border-radius: 15px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* =======  Listing Container =========*/
+
+.listing-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  border-radius: var(--borderRadius);
+  width: 100%;
+  height: 100%;
+}
+.each-listing {
+  position: relative;
+  order: 1px solid red;
+}
+.listing-feed-picture img {
+  width: 100%;
+  height: 300px;
+  display: block;
+  filter: brightness(90%);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.listing-title, .listing-price {
+  font-size: 11px;
+}
+
+.title-rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.star-icontext {
+  display: flex;
+  align-items: center;
+}
+.star-icon {
+  caret-color: black;
+  font-size: 13px;
+}
+
+.star-text {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.listing-text {
+  color: var(--black-300);
+  font-size: 11px;
+}
+.heart-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+.heart-icon {
+  font-size: 16px;
+  color: var(--black-100);
+}
+
 @media screen and (min-width: 680px) {
   body {
     margin: 0;
+  }
+
+  /* =========== Navbar =======*/
+
+  header {
+    positin: fixed;
+    border-bottom: 1px solid var(--border-color);
+    pading-bottom: 1.5rem;
   }
 
   .nav-container {
@@ -312,10 +523,104 @@ header {
     align-items: center;
     height: 75px;
   }
+
+  .airbnb-logo {
+    display: inline;
+  }
+  
+
+  .search-btn {
+    background-color: var(--red-100);
+    rght: 5px;
+  }
+
+  .any-container {
+    dislay: flex;
+    align-items: center;
+    box-shadow: var(--shadow-3);
+    border-radius: 25px;
+    padding: .5rem 0;
+    width: 310px;
+    brder: 1px solid red;
+  }
+
+  .any-content {
+    display: flex;
+    padding-left: unset;
+  }
+  .search-icon {
+    font-size: 10px;
+    color: var(--white);
+  }
+
+  .any-filter-btn {
+    display: none;
+  }
+
+  .week-guest {
+    display: flex;
+  }
+  
+  .each-any {
+    fnt-weight: var(--thicker-font);
+    font-size: 13px;
+    padding: 0 15px;
+    margin-right: unset;
+  }
+  
+  .any-btn {
+    border-right: 1px solid var(--border-color);
+  }
+  
+  .guest-label {
+    font-size: 13px;
+  }
+
+  .any-search {
+    right: 4px;
+  }
+
+  .right-nav {
+    display: flex;
+  }
+
+  .togg-filter {
+    display: flex;
+  }
+
+
+  .right-tpc {
+    display: flex;
+    align-items: center;
+  }
+  .dtp-text {
+    font-size: 15px;
+    border-right: 1px solid var(--border-color);
+    padding-right: 15px;
+  }
+  
+  .fees-text {
+    color: var(--black-300);
+    font-size: 12px;
+    margin-left: 10px;
+  }
+
+
+
+  /*======== Listing Container ========*/
+
+  .listing-feed-picture img {
+    height: 170px;
+  }
+
+
+  
 }
 
 @media screen and (min-width: 768px) {
-  .nav-container {
+  .nav-container,
+  .bd-container,
+  .toggle-price-container {
     margin-left: auto;
     margin-right: auto;
   }

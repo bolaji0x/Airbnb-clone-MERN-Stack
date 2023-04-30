@@ -20,13 +20,16 @@ const tabs = [
 
 const Navbar = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const [showTotalPrice, setShowTotalPrice] = useState(true);
 
-  //const visibleTabs = tabs.slice(startIndex, startIndex + 5);
+  const handleToggle = () => {
+    setShowTotalPrice(!showTotalPrice);
+  };
 
   const handleNextTabClick = () => {
     let nextIndex = startIndex + 1;
-    if (nextIndex > tabs.length - 7) {
-      nextIndex = tabs.length - 7;
+    if (nextIndex > tabs.length - 5) {
+      nextIndex = tabs.length - 5;
     }
     setStartIndex(nextIndex);
   };
@@ -45,15 +48,31 @@ const Navbar = () => {
     <div>
       <header className='header'>
         <nav className='nav-container'>
-          <div><Logo /></div>
+          <div className='airbnb-logo'><Logo /></div>
 
           <div className='any-container'>
-            <button className='any-btn each-any'>Anywhere</button>
-            <button className='any-btn each-any'>Anyweek</button>
-            <div className='add-guest'>
-              <label className='guest-label each-any'>Add guests</label>
-              <button className='search-btn'><FaSearch className='search-icon' /></button>
+            <button className='search-btn any-search'>
+              <FaSearch className='search-icon' />
+            </button>
+
+            <div className='any-content'>
+              <div>
+                <button className='any-btn each-any anywhere-btn'>Anywhere</button>
+              </div>
+              <div className='week-guest'>
+                <button className='any-btn each-any anyg'>Anyweek</button>
+                <div className='add-guest'>
+                  <label className='guest-label each-any anyg'>Add guests</label>
+                  
+                </div>
+              </div>
             </div>
+
+            
+            <div className='filter-btn any-filter-btn'>
+              <BiSort className='filter-icon' />
+            </div>
+            
           </div>
 
           <div className='right-nav'>
@@ -67,9 +86,9 @@ const Navbar = () => {
           </div>
           
         </nav>
-      </header>
+      
 
-      <div className='tabs-container'>
+      <div className='tabs-container bd-container'>
         <div className='l-tabtn'>
           {startIndex > 0 && (
             <button className='toggle-tab-btn' onClick={handlePrevTabClick}>
@@ -80,7 +99,7 @@ const Navbar = () => {
 
         <div className='tabs-content'>
             {tabs.map((tab, index) => {
-              if (index >= startIndex && index < startIndex + 7) {
+              if (index >= startIndex && index < startIndex + 5) {
                 return (
                   <div className='each-tab' key={index}>
                     <button className='tab-icon'>{tab.icon}</button>
@@ -95,20 +114,43 @@ const Navbar = () => {
 
 
         <div className='r-tbatn'>
-          {startIndex < tabs.length - 7 && (
+          {startIndex < tabs.length - 5 && (
             <button className='toggle-tab-btn' onClick={handleNextTabClick}>
               <BiChevronRight className='next-tab-icon' />
             </button>
           )}
         </div>
 
-        <div className='filter-btn'>
+        <div className='filter-btn togg-filter'>
           <BiSort className='filter-icon' />
           <label className='filter-label'>Filters</label>
         </div>
 
       </div>
+      </header>
       
+
+      <div className='toggle-price-container'>
+        <div className="toggle-price-content bd-container">
+
+          <div className='right-tpc'>
+            <h3 className='dtp-text'>{showTotalPrice ? "Display total price" : "Hide total price"}</h3>
+            <p className='fees-text'>Include all fess, before taxes</p>
+          </div>
+
+          <div>
+            <label className="switch">
+              <input type="checkbox" checked={!showTotalPrice} onChange={handleToggle} />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          
+        </div>
+      </div>
+
+      
+    
+
     </div>
     
   )
