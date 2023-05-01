@@ -1,10 +1,11 @@
 import React from 'react'
-import { ListingContainer, Navbar } from '../components'
+import { ListingContainer, Navbar, Footer } from '../components'
 const Landing = () => {
   return (
     <>
       <Navbar />
       <ListingContainer />
+      <Footer />
     </>
   )
 }
