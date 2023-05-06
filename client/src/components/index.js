@@ -5,6 +5,7 @@ import Loading from './Loading'
 import ListingContainer from './ListingContainer'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import SingleListing from './SingleListing'
 export {
     FormRow,
     FormRowSelect,
@@ -12,5 +13,6 @@ export {
     Loading,
     ListingContainer,
     Navbar,
-    Footer
+    Footer,
+    SingleListing
 }

@@ -66,15 +66,15 @@ const Register = () => {
   return (
     <React.Fragment>
       {user && <Navigate to='/' />}
-      <section className='b-container'>
-      <div>
+      <section >
+      <div className='form-container'>
         <form 
           encType="multipart/form-data"  className='form-section' 
           onSubmit={handleSubmit}
         >
-        <h3 className='register-title'>{values.isMember ? 'Log in as Seller' : 'Sign up as Seller'}</h3>
+        <h3 className='register-title'>{values.isMember ? 'Log in ' : 'Sign up'}</h3>
+        <h4>Welcome to Airbnb</h4>
         {showAlert && <Alert />}
-        {/* profile photo */}
         {!values.isMember && (
         <div>
             {/* username */}
@@ -110,10 +110,6 @@ const Register = () => {
         />
         {values.isMember ? 
         <div className='rmb-flex'>
-          <div className='rmbr-flex'>
-            <input type='checkbox' />
-            <p className='rmb-name'>Remember me</p>
-          </div>
           <button className='bregister-btn'>Forgot Password</button>
         </div>
         :   
