@@ -1069,6 +1069,178 @@ input:checked + .slider:before {
   margin-bottom: 1rem;
 }
 
+/* ====== Profile Section ========== */
+
+.profile-container {
+  max-width: 600px;
+  width: calc(100% - 2rem);
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.profile-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.each-tab-btn {
+  display: grid;
+  background-color: var(--black-500);
+  justify-items: center;
+  border-radius: 10px;
+  padding: .5rem 1rem;
+  margin-left: 10px;
+}
+
+.each-tab-icon {
+  font-size: 12px;
+  color: var(--black-100);
+  margin-bottom: 5px;
+}
+
+.each-tab-label {
+ font-size: 11px;
+ margin-left: 4px;
+ font-weight: var(--thicker-font);
+}
+
+.profile-text {
+  font-size: 14px;
+  text-align: center;
+}
+
+
+/* =======My Bookings ======= */
+.bookings-container {
+  margin-top: 2rem;
+}
+.booking-content {
+  border: 1px solid green;
+  border-radius: 10px;
+  display: flex;
+  heght: 150px;
+}
+
+.booking-img {
+  height: 100%;
+  width: 150px;
+  object-fit: cover;
+
+}
+
+.booking-texts {
+  padding: .5rem;
+  width: 100%;
+  background-color: var(--black-400);
+}
+
+.booking-title {
+  font-size: 14px;
+  font-weight: var(--thicker-font);
+}
+
+.booking-label-icon {
+  display: grid;
+}
+
+.each-bli {
+  display: flex;
+  align-items: center;
+  margin-right: .5rem;
+  color: var(--black-300);
+}
+
+.bli-icon {
+  font-size: 10px;
+
+}
+
+.ar-icon {
+  margin: 0 5px;
+}
+
+.bli-text {
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+.booking-btm {
+  display: flex;
+  align-items: center;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.bbtm-text {
+  font-size: 1rem;
+  color: var(--black-100);
+  margin-left: 10px;
+}
+
+
+/* ===== Add Booking =======*/
+.each-create-input {
+
+}
+
+.eci-desc {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: var(--black-300);
+}
+
+.eci-text {
+  font-size: 14px;
+  font-weight: var(--thicker-font);
+}
+
+
+
+.img-prev {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+
+.upload-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.upload-btn {
+  visibility: hidden;
+}
+
+.upload-img-btn {
+  display: flex;
+}
+
+.upload-btn-cont {
+  background-color: var(--black-500);
+  width: 65px;
+  height: 65px;
+  color: var(--black-300);
+  margin-left: .8rem;
+  font-size: .8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-3);
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+}
+
+.cloud-btn {
+  font-size: 1.2rem;
+}
+
+
+
 @media screen and (min-width: 680px) {
   body {
     margin: 0;
@@ -1251,6 +1423,31 @@ input:checked + .slider:before {
     height: 380px;
   }
   
+
+  /* ======= Profile Section ===== */
+
+  .each-tab-btn {
+    display: flex;
+    background-color: var(--black-500);
+    align-items: center;
+    border-radius: 35px;
+    padding: .5rem 1rem;
+    margin-left: 10px;
+  }
+
+  .each-tab-icon {
+    font-size: 12px;
+    color: var(--black-100);
+    margin-bottom: unset;
+  }
+
+
+  /* ========== Booking Section ======== */
+  
+  .booking-label-icon {
+    display: flex;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
