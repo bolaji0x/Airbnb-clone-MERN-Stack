@@ -141,7 +141,7 @@ ul, li {
   height: 20px;
   border-radius: 50%;
   border: 3px solid #ccc;
-  border-top-color: var(--blue-100);
+  border-top-color: var(--red-100);
   animation: spinner 0.6s linear infinite;
 }
 
@@ -1172,7 +1172,10 @@ input:checked + .slider:before {
  margin-left: 4px;
  font-weight: var(--thicker-font);
 }
-
+.profile-content {
+  border: 1px solid green;
+  ma-width: 400px;
+}
 .profile-text {
   font-size: 14px;
   text-align: center;
@@ -1180,14 +1183,43 @@ input:checked + .slider:before {
 
 
 /* =======My Bookings ======= */
+
 .bookings-container {
   margin-top: 2rem;
+}
+
+.add-bbtn {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 25px;
+  background-color: var(--red-100);
+  padding: 4px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  margin-top: .5rem;
+  font-weight: var(--thick-font);
+  width: 150px;
+  margin: 0 auto;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.addb-text {
+ margin-left: 5px;
+}
+
+.addb-icon {
+
 }
 .booking-content {
   border: 1px solid green;
   border-radius: 10px;
   display: flex;
   heght: 150px;
+  margin-bottom: 5px;
 }
 
 .booking-img {

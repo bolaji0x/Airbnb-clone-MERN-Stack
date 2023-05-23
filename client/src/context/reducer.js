@@ -7,7 +7,11 @@ import {
     CREATE_LISTING_ERROR, 
     CREATE_LISTING_SUCCESS, 
     DISPLAY_ALERT, 
+    GET_AUTHLISTINGS_BEGIN, 
+    GET_AUTHLISTINGS_SUCCESS, 
     GET_CURRENT_USER_BEGIN, GET_CURRENT_USER_SUCCESS, 
+    GET_LISTINGS_BEGIN, 
+    GET_LISTINGS_SUCCESS, 
     HANDLE_CHANGE, 
     LOGOUT_USER, 
     SETUP_USER_BEGIN, SETUP_USER_ERROR, 
@@ -118,6 +122,35 @@ const reducer = (state, action) => {
         alertText: action.payload.msg,
       }
     }
+
+    if (action.type === GET_LISTINGS_BEGIN) {
+      return { ...state, isLoading: true, showAlert: false }
+    }
+    if (action.type === GET_LISTINGS_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        listings: action.payload.listings,
+        totalListings: action.payload.totalListings,
+        numOfPages: action.payload.numOfPages
+      }
+    }
+
+
+    if (action.type === GET_AUTHLISTINGS_BEGIN) {
+      return { ...state, isLoading: true, showAlert: false }
+    }
+    if (action.type === GET_AUTHLISTINGS_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        listings: action.payload.listings,
+        totalListings: action.payload.totalListings,
+        numOfPages: action.payload.numOfPages
+      }
+    }
+
+
 
     if (action.type === GET_CURRENT_USER_BEGIN) {
         return { ...state, userLoading: true, showAlert: false };

@@ -5,7 +5,7 @@ const NavTabs = () => {
   return (
     <>
       <div>
-            <div className='profile-content'>
+            <div className='prfile-content'>
                 <div className='profile-head'>
                     <Link to='' className='each-tab-btn'>
                         <FaUser className='each-tab-icon' />
@@ -15,7 +15,7 @@ const NavTabs = () => {
                         <FaBars className='each-tab-icon' />
                         <label className='each-tab-label'>My Bookings</label>
                     </Link>
-                    <Link to='/add-booking' className='each-tab-btn'>
+                    <Link to='/all-accommodations' className='each-tab-btn'>
                         <FaHome className='each-tab-icon' />
                         <label className='each-tab-label'>My Accomodations</label>
                     </Link>

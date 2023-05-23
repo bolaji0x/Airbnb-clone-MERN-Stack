@@ -19,6 +19,10 @@ import {
   CREATE_LISTING_BEGIN,
   CREATE_LISTING_SUCCESS,
   CREATE_LISTING_ERROR,
+  GET_LISTINGS_SUCCESS,
+  GET_LISTINGS_BEGIN,
+  GET_AUTHLISTINGS_BEGIN,
+  GET_AUTHLISTINGS_SUCCESS,
   
  
 
@@ -35,9 +39,14 @@ const initialState = {
   user: null,
   userAddress: '',
   
+  search: '',
+  sort: 'latest',
   page: 1,
 
   listing: null,
+  listings: [],
+  totalListings: 0,
+  numOfPages: 1
 
 }
 const AppContext = React.createContext()
@@ -146,6 +155,56 @@ const AppProvider = ({ children }) => {
     }
     clearAlert()
   }
+
+  const getListings = async () => {
+    const {sort, page, search} = state
+    let url = `listings/all?page=${page}&sort=${sort}`
+    if (search) {
+      url = url + `&search=${search}`;
+    }
+    dispatch({ type: GET_LISTINGS_BEGIN })
+  
+    try {
+      const { data } = await axios.get(`/api/v1/${url}`)
+      const { listings, totalListings, numOfPages } = data
+      console.log(listings)
+      dispatch({
+        type: GET_LISTINGS_SUCCESS,
+        payload: {
+          listings,
+          totalListings,
+          numOfPages
+        },
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    clearAlert()
+  }
+
+  const getUserListings = async () => {
+    const {sort, page} = state
+    let url = `/listings?page=${page}&sort=${sort}`
+
+    dispatch({ type: GET_AUTHLISTINGS_BEGIN })
+  
+    try {
+      const { data } = await authFetch(url)
+      const { listings, totalListings, numOfPages } = data
+      console.log(listings)
+      dispatch({
+        type: GET_AUTHLISTINGS_SUCCESS,
+        payload: {
+          listings,
+          totalListings,
+          numOfPages
+        },
+      })
+    } catch (error) {
+        logoutUser();
+    }
+    clearAlert()
+  }
   
 
   
@@ -185,7 +244,9 @@ const AppProvider = ({ children }) => {
         changePage,
         clearFilters,
         getCurrentUser,
-        createListing
+        createListing,
+        getListings,
+        getUserListings
     
       }}
     >

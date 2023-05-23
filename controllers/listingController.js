@@ -40,9 +40,37 @@ const createListing = async (req, res) => {
       createdBy: req.user.userId
     });
     await listing.save();
-    res.status(StatusCodes.CREATED).json({ listing });
-   
+    res.status(StatusCodes.CREATED).json({ listing }); 
 };
+
+const getCurrentUserListings = async (req, res) => {
+  const { sort } = req.query
+  const queryObject = {
+    createdBy: req.user.userId,
+  }
+
+  let result = Listing.find(queryObject)
+  if (sort === 'latest') {
+      result = result.sort('-createdAt')
+  }
+  if (sort === 'oldest') {
+      result = result.sort('createdAt')
+  }
+  
+  // setup pagination
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 5;
+  const skip = (page - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
+
+  const listings = await result;
+
+  const totalListings = await Listing.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalListings / limit);
+  res.status(StatusCodes.OK).json({ listings, totalListings, numOfPages })
+}
+
 
 const getAllListings = async (req, res) => {
   const { sort, search } = req.query
@@ -155,6 +183,7 @@ const deleteListing = async (req, res) => {
 
 module.exports = { 
   createListing,
+  getCurrentUserListings,
   getAllListings,
   getSingleListing,
   updateListing,
