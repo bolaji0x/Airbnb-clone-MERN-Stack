@@ -6,6 +6,8 @@ import ListingContainer from './ListingContainer'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import SingleListing from './SingleListing'
+import NavTabs from './NavTabs'
+import TabsContainer from './TabsContainer'
 export {
     FormRow,
     FormRowSelect,
@@ -14,5 +16,7 @@ export {
     ListingContainer,
     Navbar,
     Footer,
-    SingleListing
+    SingleListing,
+    NavTabs,
+    TabsContainer
 }

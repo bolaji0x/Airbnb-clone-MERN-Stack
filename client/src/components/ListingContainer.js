@@ -3,7 +3,7 @@ import Listing from './Listing'
 const ListingContainer = () => {
   return (
     <div className='bd-container'>
-    <Listing />
+      <Listing />
     </div>
   )
 }

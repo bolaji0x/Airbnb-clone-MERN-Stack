@@ -157,6 +157,10 @@ ul, li {
   margin-right: 1rem;
 }
 
+.dashboard-page {
+  padding-top: 6rem;
+}
+
 /* ===== Form Row Section ===== */
 
 *,
@@ -282,6 +286,66 @@ ul, li {
 }
 
 
+/*======  FormSection Textarea ======*/
+
+.form-item {
+  position: relative;
+  margin-bottom: 15px;
+  
+}
+.form-item textarea{
+  display: block;
+  width: 100%;
+  height: 120px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--borderRadius);
+  outline: none;
+  padding: .5rem;
+  background: none;
+  z-index: 1;
+  transition: all .3s ease;
+  resize: none;
+  
+}
+.form-item textarea:focus{
+  border: 1px solid var(--red-100);
+}
+
+.form-item textarea:focus + label,
+.form-item textarea:valid + label {
+  font-size: .7rem;
+  top: -9px
+}
+.form-item textarea:focus + label{
+  
+  color: var(--red-100);
+  transition: 0.3s;
+  font-size: .8rem;
+}
+
+
+/* ========== FormRow Date ========*/
+
+
+.form-date-flex {
+  diplay: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.form-date-flex div {
+  magin-left: 5px;
+}
+
+.each-form-date {
+  display: grid;
+}
+
+.each-form-date label {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
 
 /* ======= Alert Section =====*/
 
@@ -384,7 +448,7 @@ ul, li {
 }
 
 .create-form {
-  margin-top: 6rem;
+  mrgin-top: 6rem;
 }
 
 
@@ -505,6 +569,7 @@ header {
   align-items: center;
   width: 100%;
   margin: 1rem 0;
+  padding-top: 6rem;
   
 }
 
@@ -568,14 +633,15 @@ header {
   margin-left: 5px;
 }
 
-
+.eli {
+  padding: 4rem 0;
+}
 
 .toggle-price-container {
   max-width: 500px;
   width: calc(100% - 1rem);
   margin-left: .5rem;
   margin-right: .5rem;
-  padding-top: 11rem;
 }
 
 .toggle-price-content {
@@ -1091,6 +1157,8 @@ input:checked + .slider:before {
   border-radius: 10px;
   padding: .5rem 1rem;
   margin-left: 10px;
+  text-decoration: none;
+  color: var(--black-100);
 }
 
 .each-tab-icon {
@@ -1182,9 +1250,6 @@ input:checked + .slider:before {
 
 
 /* ===== Add Booking =======*/
-.each-create-input {
-
-}
 
 .eci-desc {
   font-size: 12px;
@@ -1195,24 +1260,20 @@ input:checked + .slider:before {
 .eci-text {
   font-size: 14px;
   font-weight: var(--thicker-font);
+  padding-bottom: 7px;
 }
 
 
 
-.img-prev {
-  width: 70px;
-  height: 70px;
-  border-radius: 100%;
-}
 
-.upload-text {
-  position: absolute;
-  left: 0;
-  right: 0;
+.uploader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .upload-btn {
-  visibility: hidden;
+  display: none;
 }
 
 .upload-img-btn {
@@ -1221,10 +1282,9 @@ input:checked + .slider:before {
 
 .upload-btn-cont {
   background-color: var(--black-500);
-  width: 65px;
-  height: 65px;
+  width: 50px;
   color: var(--black-300);
-  margin-left: .8rem;
+  marin-left: .8rem;
   font-size: .8rem;
   display: flex;
   flex-direction: column;
@@ -1233,10 +1293,15 @@ input:checked + .slider:before {
   box-shadow: var(--shadow-3);
   border-radius: var(--borderRadius);
   cursor: pointer;
+  padding: .5rem;
 }
 
 .cloud-btn {
   font-size: 1.2rem;
+}
+
+.preview-img {
+  margin-left: 10px;
 }
 
 

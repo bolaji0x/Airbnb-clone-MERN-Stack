@@ -16,6 +16,9 @@ import {
   
   CHANGE_PAGE,
   CLEAR_FILTERS,
+  CREATE_LISTING_BEGIN,
+  CREATE_LISTING_SUCCESS,
+  CREATE_LISTING_ERROR,
   
  
 
@@ -31,11 +34,10 @@ const initialState = {
   alertType: '',
   user: null,
   userAddress: '',
-
-  
-  
   
   page: 1,
+
+  listing: null,
 
 }
 const AppContext = React.createContext()
@@ -122,6 +124,28 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
   
+
+  const createListing = async (listingData) => {
+    dispatch({ type: CREATE_LISTING_BEGIN })
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+      const { data } = await authFetch.post('/listings', listingData, config)
+      const {listing} = data
+      dispatch({ type: CREATE_LISTING_SUCCESS, payload: {listing}})
+      dispatch({ type: CLEAR_VALUES })
+    } catch (error) {
+      if (error.response.status === 401) return
+      dispatch({
+        type: CREATE_LISTING_ERROR,
+        payload: { msg: error.response.data.msg },
+      })
+    }
+    clearAlert()
+  }
   
 
   
@@ -160,7 +184,8 @@ const AppProvider = ({ children }) => {
         clearValues,
         changePage,
         clearFilters,
-        getCurrentUser
+        getCurrentUser,
+        createListing
     
       }}
     >

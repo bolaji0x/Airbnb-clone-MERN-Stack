@@ -12,7 +12,7 @@ const Footer = () => {
     <div className='footer-container'>
 
         <div>
-            {!isModalOpen && (
+            {isModalOpen && (
             <footer className="footer-modal">
             <button onClick={handleToggleClick} className='cf-btn'><FaTimes className='cf-icon' /></button>
                 <div className="bd-container">

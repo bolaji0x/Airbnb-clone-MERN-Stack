@@ -3,6 +3,9 @@ import {
     CLEAR_ALERT, 
     CLEAR_FILTERS, 
     CLEAR_VALUES, 
+    CREATE_LISTING_BEGIN, 
+    CREATE_LISTING_ERROR, 
+    CREATE_LISTING_SUCCESS, 
     DISPLAY_ALERT, 
     GET_CURRENT_USER_BEGIN, GET_CURRENT_USER_SUCCESS, 
     HANDLE_CHANGE, 
@@ -92,6 +95,28 @@ const reducer = (state, action) => {
           ...state,
           [action.payload.name]: action.payload.value,
         }
+    }
+    if (action.type === CREATE_LISTING_BEGIN) {
+      return { ...state, isLoading: true }
+    }
+    if (action.type === CREATE_LISTING_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        listing: action.payload.listing,
+        alertType: 'success',
+        alertText: 'Listing created',
+      }
+    }
+    if (action.type === CREATE_LISTING_ERROR) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: action.payload.msg,
+      }
     }
 
     if (action.type === GET_CURRENT_USER_BEGIN) {

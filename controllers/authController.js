@@ -35,7 +35,7 @@ const register = async (req, res) => {
         address: user.address, 
         role: user.role
     },
-    address: user.address,
+    address: user.address
   });
 };
 const login = async (req, res) => {

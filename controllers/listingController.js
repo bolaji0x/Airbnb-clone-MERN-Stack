@@ -14,9 +14,9 @@ cloudinary.config({
 const upload = multer({ dest: 'uploads/' });
 
 const createListing = async (req, res) => {
-    const { title, description, price } = req.body;
+    const { title, description, price, address, guestNo, bedroomNo, bedNo, checkinTime, checkoutTime } = req.body;
     const images = [];
-    if (!title || !description || !price || !images) {
+    if (!title || !description || !price || !images || !address || !guestNo || !bedroomNo || !bedNo || !checkinTime || !checkoutTime) {
       throw new CustomError.BadRequestError('Please provide all values');
     }
     // Upload images to Cloudinary
@@ -31,6 +31,12 @@ const createListing = async (req, res) => {
       description,
       price,
       images,
+      address,
+      guestNo,
+      bedroomNo, 
+      bedNo,
+      checkinTime,
+      checkoutTime,
       createdBy: req.user.userId
     });
     await listing.save();
@@ -87,10 +93,10 @@ const getSingleListing = async (req, res) => {
 
 const updateListing = async (req, res) => {
   const { id: listingId } = req.params;
-  const { title, description, price } = req.body;
+  const { title, description, price, address, guestNo, bedroomNo, bedNo, checkinTime, checkoutTime } = req.body;
   const images = [];
 
-  if (!title || !description || !price) {
+  if (!title || !description || !price || !images || !address || !guestNo || !bedroomNo || !bedNo || !checkinTime || !checkoutTime)   {
     throw new CustomError.BadRequestError('Please provide all values');
   }
   // Upload new images to Cloudinary
@@ -109,6 +115,12 @@ const updateListing = async (req, res) => {
   listing.title = title;
   listing.description = description;
   listing.price = price;
+  listing.address = address;
+  listing.guestNo = guestNo;
+  listing.bedroomNo = bedroomNo;
+  listing.bedNo = bedNo;
+  listing.checkinTime = checkinTime;
+  listing.checkoutTime = checkoutTime;
   listing.images = [...listing.images, ...images]; // Concatenate old and new images
   checkPermissions(req.user, listing.createdBy);
 

@@ -1,25 +1,150 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiCloudUpload } from 'react-icons/bi'
-import { FormRow } from '../../components'
+import { FormRow, Alert } from '../../components'
+import { useAppContext } from '../../context/appContext'
+
+const initialState = {
+    title: '',
+    description: '',
+    price: '',
+    address: '',
+    guestNo: '',
+    bedroomNo: '',
+    bedNo: '',
+    checkinTime: '',
+    checkoutTime: ''
+}
 
 const AddBooking = () => {
+    const { showAlert, createListing, displayAlert, isLoading } = useAppContext()
+    const [values, setValues] = useState(initialState);
+    
+    const [checkinTime, setCheckinTime] = useState('');
+    const [checkoutTime, setCheckoutTime] = useState('');
+    const [selectedImages, setSelectedImages] = useState([]);
+    const [imagePreviews, setImagePreviews] = useState([]);
+
+    const handleChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value });
+    };
+      
+    const handleImageChange = (e) => {
+        const files = Array.from(e.target.files);
+    
+        setSelectedImages(files);
+    
+        const previews = files.map((file) => URL.createObjectURL(file));
+        setImagePreviews(previews);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+
+
+        const { title, description, price, address, guestNo, bedroomNo, bedNo } = values
+
+        if(!title ||!description || !price || !address || !guestNo || !bedroomNo || !bedNo || !checkinTime || !checkoutTime) {
+            displayAlert()
+            return
+        }
+        const myForm = new FormData();  
+          
+        myForm.append("title", title);
+        myForm.append("description", description);
+        myForm.append("price", price);
+        myForm.append('address', address)
+        myForm.append('guestNo', guestNo)
+        myForm.append('bedroomNo', bedroomNo)
+        myForm.append('bedNo', bedNo)
+        myForm.append('checkinTime', checkinTime)
+        myForm.append('checkoutTime', checkoutTime)
+          
+        selectedImages.forEach((image) => {
+            myForm.append('images', image);
+        });
+
+        createListing(myForm);
+           
+          
+    }
+    
   return (
     <>
         <div className='accomodations-container profile-container bd-container'>
-            <form className='create-form'>
-                <div className='each-create-input'>
-                    <p className='eci-desc'>Title for your place, should be short and catchy as in advertisement</p>
-                    <FormRow type='text' labelText='Title' />
+            <form encType='multipart/form-data' className='create-form' onSubmit={handleSubmit}>
+                {showAlert && <Alert />}
+                <FormRow 
+                    type='text' 
+                    value={values.title}
+                    labelText='Title' 
+                    name='title'
+                    handleChange={handleChange}
+                />
+
+                <div className='form-item each-create-input'>
+                    <textarea
+                        type="text"
+                        className='caption-input'
+                        required
+                        name="description"
+                        value={values.description}
+                        onChange={handleChange}
+                    />
+                    <label className="">Description</label>
                 </div>
-                <div className='each-create-input'>
-                    <p className='eci-desc'>Address to this place</p>
-                    <FormRow type='text' labelText='Address' />
+
+
+                <FormRow 
+                    type='number'
+                    name='price'
+                    value={values.price} 
+                    labelText='Price per night'
+                    handleChange={handleChange} 
+                />
+
+                <div className='form-item each-create-input'>
+                    <textarea
+                        type="text"
+                        className='caption-input'
+                        required
+                        name="address"
+                        value={values.address}
+                        onChange={handleChange}
+                    />
+                    <label className="">Address</label>
+                </div>                
+                
+
+
+
+
+
+                {/*
+                <input type="file" name="images" multiple onChange={handleImageChange} />
+                <div>
+                    {imagePreviews.map((previewUrl) => (
+                    <img key={previewUrl} src={previewUrl} alt="Preview" />
+                    ))}
                 </div>
+                */}
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div className='each-create-input'>
-                    <label className='eci-text'>Photos</label>
-                    <div className='upload-img-btn'>
-                        <div><img src='' className='upload-img' alt='booking-img' /></div>
-                        <div className='upload-btn-section'>
+                    <h3 className='eci-text'>Photos</h3>
+                    <div className='uploader'>
+                        <div>
                             <label className='upload-btn-cont' htmlFor='files'>
                                 <BiCloudUpload className='cloud-btn' />
                                 <span>Upload</span>
@@ -28,44 +153,64 @@ const AddBooking = () => {
                                 type="file"
                                 id='files'
                                 className='upload-btn'
-                                name="photo"
+                                name="images"
                                 accept=".png, .jpg, .jpeg"
-                                multiple 
-                                
+                                multiple
+                                onChange={handleImageChange}     
                             />
+                        </div>
+                        <div>
+                            {imagePreviews.map((previewUrl) => (
+                            <img key={previewUrl} src={previewUrl} className='preview-img' alt="preview" />
+                            ))}
                         </div>
                     </div>                    
                 </div>
 
-                <div className='each-create-input'>
-                    <label className='eci-desc'>Description to this place</label>
-                    <textarea
-                        type="text"
-                        className='caption-input'
-                        required
-                        name="Description"
-                    ></textarea>
-                </div>
-                <div className='each-create-input'>
-                    <label className='eci-desc'>Extra info</label>
-                    <textarea
-                        type="text"
-                        className='caption-input'
-                        required
-                        name="Extra Info"
-                    ></textarea>
+
+                
+                <FormRow 
+                    type='number' 
+                    name='bedroomNo'
+                    value={values.bedroomNo}
+                    handleChange={handleChange}
+                    labelText='Bedroom Number' 
+                />
+
+                <FormRow 
+                    type='number'
+                    name='bedNo'
+                    value={values.bedNo}
+                    handleChange={handleChange} 
+                    labelText='Bed Number' 
+                />
+                
+                <FormRow 
+                    type='number'
+                    name='guestNo'
+                    value={values.guestNo}
+                    handleChange={handleChange} 
+                    labelText='Max number of guests' 
+                />
+
+                <div className='each-form-date'>
+                    <label className=''>Check in time</label>
+                    <FormRow 
+                        type="date"
+                        value={checkinTime}
+                        handleChange={(e) => setCheckinTime(e.target.value)}  
+                    />
                 </div>
 
-                <div className='each-create-input'>
-                    <label>Check in & Chekout times</label>
-                    <div>
-                        <div><FormRow type='number' labelText='Check in time' /></div>
-                        <div><FormRow type='number' labelText='Check out time' /></div>
-                        <div><FormRow type='number' labelText='Max number of guests' /></div>
-                        <div><FormRow type='number' labelText='Price per night' /></div>
-                    </div>
+                <div className='each-form-date'>
+                    <label className=''>Check out time</label>
+                    <FormRow 
+                        type="date" 
+                        value={checkoutTime}
+                        handleChange={(e) => setCheckoutTime(e.target.value)}
+                    />
                 </div>
-                <button type='submit' className='btn login-btn' >Save</button>
+                <button disabled={isLoading} type='submit' className='btn login-btn' >Submit</button>
             </form>
         </div>
     </>
