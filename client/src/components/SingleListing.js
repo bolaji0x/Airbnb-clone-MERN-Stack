@@ -1,9 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import LuxeLogo from './LuxeLogo'
 import { FaBars, FaGlobe, FaSearch, FaShare, FaUserCircle, FaHeart } from 'react-icons/fa'
 
-import TestImg from './TestImg'
+
+import { useParams } from 'react-router-dom'
+import { useAppContext } from '../context/appContext'
+
 const SingleListing = () => {
+  const {id} = useParams()
+  const {isLoading, listing, getSingleListing} = useAppContext()
+
+  useEffect(() => {
+    getSingleListing(id) 
+    // eslint-disable-next-line 
+}, [])
+
+if (!listing) {
+  return <h1 className='no-post'>Listing Not Found</h1>
+} else {
+  const {title, description, images, guestNo, bedroomNo, bedNo, price } = listing
   
   return (
     <>
@@ -35,11 +50,11 @@ const SingleListing = () => {
           <div>
               <div className='textimg-content'>
                 <div className='box1'>
-                  <h2 className='listing-htitle'>Villa Mirabelle</h2>
+                  <h2 className='listing-htitle'>{title}</h2>
                   <div className='listing-head'>  
                     <div className='l-head'>
                       <h3 className='listing-link'>1 review</h3>
-                      <h3 className='listing-link lh-link'>Terres Bassses California saint morress marting</h3>
+                      
                     </div>
                     <div className='l-head icon-flex'>
                     <div className='licon-text'>
@@ -52,7 +67,7 @@ const SingleListing = () => {
                     </div>
                   </div>
                 </div>
-                <div className='box2'><TestImg /></div>
+                <div className='box2'><img className='listing-img' src={images[0]} alt={title} /></div>
               </div>
               
           </div>
@@ -63,40 +78,37 @@ const SingleListing = () => {
 
 
         <div className='lisitng-grid'>
-          <div>
+          <div className='listing-textimg'>
             <div  className='listing-texts'>
-                  <h1 className='slisting-title'>Luxury stay in tereees belles collective saint marting , st martin</h1>
+                  <h1 className='slisting-title'>{title}</h1>
                   <div className='sltext-flex'>
-                    <p className='slisting-text'>10 guests</p>
-                    <p className='slisting-text'>5 bedrooms</p>
-                    <p className='slisting-text'>5 beds</p>
-                    <p className='slisting-text'>5 baths</p>
+                    <p className='slisting-text'>{guestNo} guests</p>
+                    <p className='slisting-text'>{bedroomNo} bedrooms</p>
+                    <p className='slisting-text'>{bedNo} beds</p>
                   </div>
             </div>
 
             <div className='listing-texts'>
                   <h3 className='listing-ctext'>The Space</h3>
-                  <p className='slisting-text'>please note; This property can be booked with less bathrooms. Contatc trio Designer</p>
-
-                  <p className='slisting-text'>se note; This property can be booked with less bathrooms. Contatc trio Designe</p>
+                  <p className='slisting-text'>Please note; This property can be booked with less bathrooms. Contact the Designer</p>
+                  
+                  <p className='slisting-text sl-desc'>{description}</p>
 
                   <button className='listing-link'>Show more</button>
                   <p className='listing-ctext'>Hospitaliy by LUXURY RETREATS</p>
             </div>
 
             <div className='listing-images'>
-                  <TestImg />
-                  <TestImg />
-                  <TestImg />
-                  <TestImg />
-                  <TestImg />
-                  <TestImg />
+              {images.map((image, index) => (
+                <img className='listing-grid-img' key={index} src={image} alt={`${index}`} />
+              ))}
+      
             </div>
           </div>
   
           <div className='checkout-container'>
               <div className='checkout-head'>
-                <h3 className='cout-price'>$1,258 <span className='cout-text'>night</span></h3>
+                <h3 className='cout-price'>${price} <span className='cout-text'>night</span></h3>
                 <h3 className='listing-link'>1 review</h3>
               </div>
 
@@ -117,7 +129,7 @@ const SingleListing = () => {
                   </div>
                 </div>
 
-                <button className='checkout-btn'>Reserve</button>
+                <button disabled={isLoading} className='checkout-btn'>Reserve</button>
                 <p className='cout-text ywct'>You won't charged yet</p>
 
                 <div className='checkout-btm'>
@@ -138,7 +150,8 @@ const SingleListing = () => {
  
       </div>
     </>
-  )
+    )
+  }
 }
 
 export default SingleListing

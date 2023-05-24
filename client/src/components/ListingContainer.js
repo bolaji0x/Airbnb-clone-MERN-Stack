@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppContext } from '../context/appContext'
 import Listing from './Listing'
 import {Loading} from '.'
@@ -24,7 +24,7 @@ const ListingContainer = () => {
   }
 
   return (
-    <div className='bd-container'>
+    <div className='listing-content'>
       {listings.map((listing) => {
         return (<div key={listing._id} className='pl-div'><Listing key={listing._id} {...listing} /></div>)
       })}

@@ -1002,8 +1002,14 @@ input:checked + .slider:before {
 .lisitng-grid {
   display: grid;
 }
+
+.listing-textimg {
+  width: 100%;
+  brder: 2px solid red;
+}
 .listing-texts {
   margin-bottom: 1.5rem;
+  
 }
 
 .slisting-title {
@@ -1014,6 +1020,10 @@ input:checked + .slider:before {
 .slisting-text {
   font-size: 14px;
   margin-right: 5px;
+}
+
+.sl-desc {
+  margin-top: 1rem;
 }
 
 .sltext-flex {
@@ -1475,6 +1485,12 @@ input:checked + .slider:before {
   .listing-container {
     padding-top: 6rem;
   }
+
+  .listing-textimg {
+    width: 70%;
+    brder: 2px solid red;
+  }
+
   .listing-nav {
     display: flex;
   }
@@ -1508,8 +1524,11 @@ input:checked + .slider:before {
 
   .lisitng-grid {
     display: flex;
+    rid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
-    gap: 1rem;
+    ap: 1rem;
+    rder: 1px solid green;
+    width: 100%;
   }
 
   .checkout-container {
@@ -1518,6 +1537,7 @@ input:checked + .slider:before {
     box-shadow: var(--shadow-3);
     width: 350px;
     height: 380px;
+    widh: 80%;
   }
   
 

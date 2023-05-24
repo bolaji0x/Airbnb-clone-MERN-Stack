@@ -24,8 +24,7 @@ function App() {
         
         <Route path='/signup' element={<Register />} />
         <Route path='/landing' element={<Landing />} />
-        <Route path='/listing' element={<SingleListing/>} />
-        <Route path='ab' element={<AddBooking />} />
+        <Route path='/listing/:id' element={<SingleListing/>} />
         
         <Route path='*' element={<Error />} />
       </Routes>

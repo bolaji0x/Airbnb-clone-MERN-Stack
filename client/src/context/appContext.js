@@ -23,6 +23,9 @@ import {
   GET_LISTINGS_BEGIN,
   GET_AUTHLISTINGS_BEGIN,
   GET_AUTHLISTINGS_SUCCESS,
+  GET_SINGLELISTING_BEGIN,
+  GET_SINGLELISTING_SUCCESS,
+  GET_SINGLELISTING_ERROR,
   
  
 
@@ -205,6 +208,29 @@ const AppProvider = ({ children }) => {
     }
     clearAlert()
   }
+
+  const getSingleListing = async (id) => {
+    dispatch({ type: GET_SINGLELISTING_BEGIN })
+    try {
+      const { data } = await axios.get(`/api/v1/listings/${id}`)
+      const { listing } = data
+      console.log(listing)
+      dispatch({
+        type: GET_SINGLELISTING_SUCCESS,
+        payload: {
+          listing,
+        },
+      })
+    } catch (error) {
+      if (error.response.status === 401) return
+        dispatch({
+          type: GET_SINGLELISTING_ERROR,
+          payload: { msg: error.response.data.msg }
+        })
+    }
+    clearAlert()
+  }
+
   
 
   
@@ -246,7 +272,8 @@ const AppProvider = ({ children }) => {
         getCurrentUser,
         createListing,
         getListings,
-        getUserListings
+        getUserListings,
+        getSingleListing
     
       }}
     >

@@ -12,6 +12,9 @@ import {
     GET_CURRENT_USER_BEGIN, GET_CURRENT_USER_SUCCESS, 
     GET_LISTINGS_BEGIN, 
     GET_LISTINGS_SUCCESS, 
+    GET_SINGLELISTING_BEGIN, 
+    GET_SINGLELISTING_ERROR, 
+    GET_SINGLELISTING_SUCCESS, 
     HANDLE_CHANGE, 
     LOGOUT_USER, 
     SETUP_USER_BEGIN, SETUP_USER_ERROR, 
@@ -147,6 +150,27 @@ const reducer = (state, action) => {
         listings: action.payload.listings,
         totalListings: action.payload.totalListings,
         numOfPages: action.payload.numOfPages
+      }
+    }
+
+    if (action.type === GET_SINGLELISTING_BEGIN) {
+      return { ...state, isLoading: true, showAlert: false }
+    }
+    if (action.type === GET_SINGLELISTING_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        listing: action.payload.listing
+      }
+    }
+  
+    if (action.type === GET_SINGLELISTING_ERROR) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: action.payload.msg,
       }
     }
 
