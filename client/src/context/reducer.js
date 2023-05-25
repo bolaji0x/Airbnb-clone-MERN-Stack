@@ -6,6 +6,9 @@ import {
     CREATE_LISTING_BEGIN, 
     CREATE_LISTING_ERROR, 
     CREATE_LISTING_SUCCESS, 
+    CREATE_ORDER_BEGIN, 
+    CREATE_ORDER_ERROR, 
+    CREATE_ORDER_SUCCESS, 
     DISPLAY_ALERT, 
     GET_AUTHLISTINGS_BEGIN, 
     GET_AUTHLISTINGS_SUCCESS, 
@@ -174,6 +177,29 @@ const reducer = (state, action) => {
       }
     }
 
+
+    if (action.type === CREATE_ORDER_BEGIN) {
+      return { ...state, isLoading: true }
+    }
+    if (action.type === CREATE_ORDER_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        order: action.payload.order,
+        alertType: 'success',
+        alertText: 'Order created',
+      }
+    }
+    if (action.type === CREATE_ORDER_ERROR) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: action.payload.msg,
+      }
+    }
 
 
     if (action.type === GET_CURRENT_USER_BEGIN) {

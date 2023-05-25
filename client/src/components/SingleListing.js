@@ -1,24 +1,56 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LuxeLogo from './LuxeLogo'
 import { FaBars, FaGlobe, FaSearch, FaShare, FaUserCircle, FaHeart } from 'react-icons/fa'
-
-
 import { useParams } from 'react-router-dom'
 import { useAppContext } from '../context/appContext'
+import { PaystackButton } from 'react-paystack';
+
+const initialState = {
+  checkinTime: '',
+  checkoutTime: '',
+  guestNo: 0
+}
+
 
 const SingleListing = () => {
   const {id} = useParams()
-  const {isLoading, listing, getSingleListing} = useAppContext()
+
+  const {isLoading, displayAlert, listing, getSingleListing, createOrder} = useAppContext()
+
+  const [values, setValues] = useState(initialState)
+  const [listingId, setListingId] = useState(id)
+
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setListingId('')
+    const {checkinTime, checkoutTime, guestNo} = values 
+    if(!listingId || !checkinTime || !checkoutTime || !guestNo) {
+      displayAlert()
+      return
+    }
+    const myForm = new FormData();
+    myForm.set("listingId", listingId);
+    myForm.set("checkinTime", checkinTime);
+    myForm.set("checkoutTime", checkoutTime);
+    myForm.set('guestNo', guestNo)
+    createOrder(myForm);
+  }
 
   useEffect(() => {
     getSingleListing(id) 
     // eslint-disable-next-line 
-}, [])
+  }, [])
 
 if (!listing) {
   return <h1 className='no-post'>Listing Not Found</h1>
 } else {
   const {title, description, images, guestNo, bedroomNo, bedNo, price } = listing
+
+
   
   return (
     <>
@@ -32,11 +64,11 @@ if (!listing) {
           </div>
 
           <div className='right-nav'>
-            <button className='ayh-btn each-rn'>Airbnb your home</button>
-            <button className='each-rn'><FaGlobe className='globe-btn' /></button>
+            <button type='button' className='ayh-btn each-rn'>Airbnb your home</button>
+            <button type='button' className='each-rn'><FaGlobe className='globe-btn' /></button>
             <div className='bar-user-btn each-rn'>
-              <button><FaBars className='bar-icon' /></button>
-              <button><FaUserCircle className='user-icon' /></button>
+              <button type='button'><FaBars className='bar-icon' /></button>
+              <button type='button'><FaUserCircle className='user-icon' /></button>
             </div>
 
           </div>
@@ -94,7 +126,7 @@ if (!listing) {
                   
                   <p className='slisting-text sl-desc'>{description}</p>
 
-                  <button className='listing-link'>Show more</button>
+                  <button type='button' className='listing-link'>Show more</button>
                   <p className='listing-ctext'>Hospitaliy by LUXURY RETREATS</p>
             </div>
 
@@ -106,7 +138,7 @@ if (!listing) {
             </div>
           </div>
   
-          <div className='checkout-container'>
+          <form className='checkout-container' onSubmit={handleSubmit}>
               <div className='checkout-head'>
                 <h3 className='cout-price'>${price} <span className='cout-text'>night</span></h3>
                 <h3 className='listing-link'>1 review</h3>
@@ -117,19 +149,39 @@ if (!listing) {
                   <div className='cbox-flex'>
                     <div className='each-cbox cin'>
                       <label className='cbox-text'>CHECK-IN</label>
-                      <input className='cbox-date' type='date' />
+                      <input 
+                        className='cbox-date'
+                        name='checkinTime' 
+                        type='date' 
+                        value={values.checkinTime}
+                        onChange={handleChange}
+                        />
                     </div>
                     <div className='each-cbox cout'>
                       <label className='cbox-text'>CHECK-OUT</label>
-                      <input className='cbox-date' type='date' />
+                      <input 
+                        className='cbox-date' 
+                        name='checkoutTime'
+                        type='date' 
+                        value={values.checkoutTime}
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                   <div className='cbox-no each-cbox gno'>
-                    <input className='guest-input' type='number' placeholder='Guest Number' />
+                    <input 
+                      className='guest-input' 
+                      type='number'
+                      name='guestNo' 
+                      placeholder='Guest Number'
+                      value={values.guestNo}
+                      onChange={handleChange} 
+                    />
                   </div>
                 </div>
 
-                <button disabled={isLoading} className='checkout-btn'>Reserve</button>
+                <button type='submit' disabled={isLoading} className='checkout-btn'>Reserve</button>
+
                 <p className='cout-text ywct'>You won't charged yet</p>
 
                 <div className='checkout-btm'>
@@ -143,7 +195,9 @@ if (!listing) {
                 </div>
               </div>
 
-          </div>
+          </form>
+
+          
         </div>
         
       
