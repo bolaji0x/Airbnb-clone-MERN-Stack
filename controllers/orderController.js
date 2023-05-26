@@ -7,23 +7,34 @@ const { checkPermissions } = require('../utils');
 
 
 const createOrder = async (req, res) => {
-  const { listingId, status, checkinTime, checkoutTime, guestNo } = req.body
-   
-  const listing = await Listing.findById(listingId)
-  
-  if(!listing) return res.status(400).json({msg: "This listing does not exist."})
+  const { listingId, status, checkinTime, checkoutTime, guestNo } = req.body;
+  const listing = await Listing.findById(listingId);
 
-  const subtotal = guestNo * listing.price;
-  const taxRate = 0.075; // 7.5% tax rate
-  const tax = (subtotal * taxRate).toFixed(3);
+  if (!listing) {
+    return res.status(400).json({ msg: "This listing does not exist." });
+  }
+
+  const price = listing.price;
+  const checkin = new Date(checkinTime);
+  const checkout = new Date(checkoutTime);
+  const stayDuration = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24)); // Convert to days
+
+  const subtotal = price * guestNo * stayDuration;
+  let tax = 0.075 * subtotal;
+  tax = Math.min(tax, 999).toFixed(3);
   const total = Number(subtotal) + Number(tax);
 
-
   const order = new Order({
-    createdBy: req.user.userId, listingId, tax, total, subtotal, status, checkinTime, checkoutTime, guestNo
-  })
-
-  await order.save();
+    createdBy: req.user.userId,
+    listingId,
+    tax,
+    total,
+    subtotal,
+    status,
+    checkinTime,
+    checkoutTime,
+    guestNo
+  });
 
   res.status(StatusCodes.CREATED).json({ order });
 };

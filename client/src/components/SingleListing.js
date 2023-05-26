@@ -16,16 +16,25 @@ const SingleListing = () => {
   const {id} = useParams()
 
   const {isLoading, displayAlert, listing, getSingleListing, createOrder} = useAppContext()
+  const publicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
 
   const [values, setValues] = useState(initialState)
   const [listingId, setListingId] = useState(id)
+
+  
+  const [email, setEmail] = useState('testUser1@email.com');
+  const [name, setName] = useState('testUser1');
+  const [phone, setPhone] = useState('08100000000');
+
+  
+
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    //e.preventDefault();
     setListingId('')
     const {checkinTime, checkoutTime, guestNo} = values 
     if(!listingId || !checkinTime || !checkoutTime || !guestNo) {
@@ -48,8 +57,63 @@ const SingleListing = () => {
 if (!listing) {
   return <h1 className='no-post'>Listing Not Found</h1>
 } else {
-  const {title, description, images, guestNo, bedroomNo, bedNo, price } = listing
+  const {title, description, images, guestNo, bedroomNo, bedNo, price, checkinTime, checkoutTime } = listing
 
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Prepend '0' if necessary
+    const day = ('0' + date.getDate()).slice(-2); // Prepend '0' if necessary
+    const formattedDate = `${year}-${month}-${day}`;
+  
+    return formattedDate;
+  };
+
+  const formattedCheckin = formatDate(checkinTime);
+  const formattedCheckout = formatDate(checkoutTime);
+  console.log(formattedCheckin)
+
+
+  const checkin = new Date(values.checkinTime);
+  const checkout = new Date(values.checkoutTime);
+  const stayDuration = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24)); // Convert to days
+
+  const subtotal = price * values.guestNo * stayDuration;
+  let tax = 0.075 * subtotal;
+  tax = Math.min(tax, 999).toFixed(3);
+  const amount = Number(subtotal) + Number(tax);
+
+
+
+
+  const resetForm = () => {
+    setEmail('');
+    setName('');
+    setPhone('');
+  };
+
+  const componentProps = {
+    email,
+    amount,
+    metadata: {
+      name,
+      phone,
+    },
+    publicKey,
+    text: 'Reserve',
+    onSuccess: ({ reference }) => {
+      alert(
+        `Your booking was successful! Transaction reference: ${reference}`
+      );
+      handleSubmit()
+      resetForm();
+    },
+    onClose: () => {
+      
+      alert("Wait! You need this oil, don't go!!!!")
+    },
+  };
 
   
   return (
@@ -138,7 +202,7 @@ if (!listing) {
             </div>
           </div>
   
-          <form className='checkout-container' onSubmit={handleSubmit}>
+          <div className='checkout-container'>
               <div className='checkout-head'>
                 <h3 className='cout-price'>${price} <span className='cout-text'>night</span></h3>
                 <h3 className='listing-link'>1 review</h3>
@@ -154,6 +218,8 @@ if (!listing) {
                         name='checkinTime' 
                         type='date' 
                         value={values.checkinTime}
+                        min={formattedCheckin}
+                        max={formattedCheckout}
                         onChange={handleChange}
                         />
                     </div>
@@ -164,6 +230,8 @@ if (!listing) {
                         name='checkoutTime'
                         type='date' 
                         value={values.checkoutTime}
+                        min={formattedCheckin}
+                        max={formattedCheckout}
                         onChange={handleChange}
                       />
                     </div>
@@ -175,27 +243,31 @@ if (!listing) {
                       name='guestNo' 
                       placeholder='Guest Number'
                       value={values.guestNo}
+                      min={1}
+                      max={guestNo}
                       onChange={handleChange} 
                     />
                   </div>
                 </div>
 
-                <button type='submit' disabled={isLoading} className='checkout-btn'>Reserve</button>
+
+                <PaystackButton {...componentProps} className='checkout-btn' />
+                {/*(<button type='submit' disabled={isLoading} className='checkout-btn'>Reserve</button> */}
 
                 <p className='cout-text ywct'>You won't charged yet</p>
 
                 <div className='checkout-btm'>
-                  <h3 className='listing-link'>$1,256 X 7 nights</h3>
-                  <h3 className='cout-text'>$8,806</h3>
+                  <h3 className='listing-link'>${price} X {stayDuration} nights X Number of guests </h3>
+                  <h3 className='cout-text'>${subtotal}</h3>
                 </div>
 
                 <div className='checkout-btm'>
                   <h3 className='cout-btext'>Total before taxes</h3>
-                  <h3 className='cout-btext'>$8,806</h3>
+                  <h3 className='cout-btext'>${subtotal}</h3>
                 </div>
               </div>
 
-          </form>
+          </div>
 
           
         </div>

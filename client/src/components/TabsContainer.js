@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Logo from './Logo'
-import { FaBars, FaBed, FaBox, FaBuilding, FaFilter, FaGlobe, FaGreaterThan, FaHockeyPuck, FaHotjar, FaLaptopHouse, FaMugHot, FaRedhat, FaSearch, FaSort, FaUmbrellaBeach, FaUserCircle, FaWater } from 'react-icons/fa'
+
+import { FaBed, FaBox, FaBuilding,  FaHockeyPuck, FaHotjar, FaLaptopHouse, FaMugHot, FaRedhat, FaUmbrellaBeach, FaWater } from 'react-icons/fa'
 import { BiChevronLeft, BiChevronRight, BiSort } from 'react-icons/bi'
 
 
