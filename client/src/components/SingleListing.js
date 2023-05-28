@@ -26,8 +26,6 @@ const SingleListing = () => {
   const [name, setName] = useState('testUser1');
   const [phone, setPhone] = useState('08100000000');
 
-  
-
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });

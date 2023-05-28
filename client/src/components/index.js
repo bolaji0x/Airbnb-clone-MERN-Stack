@@ -10,6 +10,7 @@ import NavTabs from './NavTabs'
 import TabsContainer from './TabsContainer'
 import AccomodationContainer from './AccomodationContainer'
 import BookingsContainer from './BookingsContainer'
+import SearchContainer from './SearchContainer'
 export {
     FormRow,
     FormRowSelect,
@@ -22,5 +23,6 @@ export {
     NavTabs,
     TabsContainer,
     AccomodationContainer,
-    BookingsContainer
+    BookingsContainer,
+    SearchContainer
 }

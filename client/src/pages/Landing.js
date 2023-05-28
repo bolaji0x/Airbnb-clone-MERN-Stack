@@ -3,10 +3,13 @@ import { ListingContainer, Navbar, Footer, TabsContainer } from '../components'
 const Landing = () => {
   return (
     <>
-      <div className='bd-container'>
+      <div className=''>
         <Navbar />
-        <TabsContainer />
-        <ListingContainer />
+        <div className='bd-container'>
+          <TabsContainer />
+          <ListingContainer />
+        </div>
+        
         <Footer />
       </div>
     </>

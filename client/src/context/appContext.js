@@ -146,7 +146,7 @@ const AppProvider = ({ children }) => {
   }
   
 
-  const createListing = async (listingData) => {
+  const createListing = async (listingData, clearFormFields) => {
     dispatch({ type: CREATE_LISTING_BEGIN })
     try {
       const config = {
@@ -157,7 +157,7 @@ const AppProvider = ({ children }) => {
       const { data } = await authFetch.post('/listings', listingData, config)
       const {listing} = data
       dispatch({ type: CREATE_LISTING_SUCCESS, payload: {listing}})
-      dispatch({ type: CLEAR_VALUES })
+      clearFormFields();
     } catch (error) {
       if (error.response.status === 401) return
       dispatch({

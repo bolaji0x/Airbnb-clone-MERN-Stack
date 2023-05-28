@@ -27,6 +27,25 @@ const AddBooking = () => {
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
     };
+
+    const clearFormFields = () => {
+        setValues({
+            title: '',
+            description: '',
+            price: '',
+            address: '',
+            guestNo: '',
+            bedroomNo: '',
+            bedNo: '',
+            checkinTime: '',
+            checkoutTime: ''
+        });
+
+        setCheckinTime('')
+        setCheckoutTime('')
+        setSelectedImages([])
+        setImagePreviews([])
+      };
       
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
@@ -64,7 +83,7 @@ const AddBooking = () => {
             myForm.append('images', image);
         });
 
-        createListing(myForm);
+        createListing(myForm, clearFormFields);
            
           
     }
