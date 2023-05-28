@@ -6,6 +6,8 @@ const CustomError = require('../errors');
 const { checkPermissions } = require('../utils');
 
 
+
+
 const createOrder = async (req, res) => {
   const { listingId, status, checkinTime, checkoutTime, guestNo } = req.body;
   const listing = await Listing.findById(listingId);
@@ -24,7 +26,7 @@ const createOrder = async (req, res) => {
   tax = Math.min(tax, 999).toFixed(3);
   const total = Number(subtotal) + Number(tax);
 
-  const order = new Order({
+  const order = await Order.create({
     createdBy: req.user.userId,
     listingId,
     tax,
@@ -92,22 +94,18 @@ const getCurrentUserOrders = async (req, res) => {
 
 
 const getHostBookings = async (req, res) => {
-  const orders = await Order.find({ 'listing.createdBy': req.user.userId }).populate('orderItems.listing', '_id createdBy');
+  
+  const orders = await Order.find({ createdBy: req.user.userId }).populate('listingId', null, { createdBy: req.user.userId });
   
  
-  orders.forEach((order) => {
-    order.orderItems = order.orderItems.filter((orderItem) => orderItem.listing.createdBy.toString() === req.user.userId.toString());
-  });
+  
 
-  const filteredOrders = orders.filter(order => order.orderItems.length > 0)
-
-  res.status(StatusCodes.OK).json({ orders: filteredOrders, totalOrders: filteredOrders.length });
+  res.status(StatusCodes.OK).json({ orders, totalOrders: orders.length });
 };
 
 
 const updateOrder = async (req, res) => {
   const { id: orderId } = req.params;
-
 
   const order = await Order.findOne({ _id: orderId });
   if (!order) {

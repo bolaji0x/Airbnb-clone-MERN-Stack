@@ -38,6 +38,7 @@ img {
 
   /* red */
   --red-100: #ff385c;
+  --red-300: #ff7094;
   --red-500: #feeaea;
 
 
@@ -273,7 +274,9 @@ ul, li {
   font-weight: var(--thicker-font);
 }
 
-
+.login-btn:disabled {
+  background-color: var(--red-300);
+}
 
 .enq-btn-section {
   text-align: center;
@@ -1248,6 +1251,10 @@ input:checked + .slider:before {
 .booking-title {
   font-size: 14px;
   font-weight: var(--thicker-font);
+}
+
+.booking-desc {
+  font-size: 12px;
 }
 
 .booking-label-icon {

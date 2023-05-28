@@ -29,6 +29,8 @@ import {
   CREATE_ORDER_BEGIN,
   CREATE_ORDER_SUCCESS,
   CREATE_ORDER_ERROR,
+  GET_BOOKINGS_SUCCESS,
+  GET_BOOKINGS_BEGIN,
   
  
 
@@ -54,7 +56,9 @@ const initialState = {
   totalListings: 0,
   numOfPages: 1,
 
-  order: null
+  order: null,
+  orders: [],
+  totalOrders: 0,
 
 }
 const AppContext = React.createContext()
@@ -257,6 +261,30 @@ const AppProvider = ({ children }) => {
     clearAlert();
   }
 
+
+  const getHostBookings = async () => {
+    
+    let url = `/orders/showHostBookings`
+
+    dispatch({ type: GET_BOOKINGS_BEGIN })
+  
+    try {
+      const { data } = await authFetch(url)
+      const { orders, totalOrders,  } = data
+      
+      dispatch({
+        type: GET_BOOKINGS_SUCCESS,
+        payload: {
+          orders,
+          totalOrders,
+        },
+      })
+      console.log(orders)
+    } catch (error) {
+        logoutUser();
+    }
+    clearAlert()
+  }
   
 
   
@@ -298,7 +326,8 @@ const AppProvider = ({ children }) => {
         getListings,
         getUserListings,
         getSingleListing,
-        createOrder
+        createOrder,
+        getHostBookings
     
       }}
     >

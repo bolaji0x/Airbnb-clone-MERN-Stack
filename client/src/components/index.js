@@ -9,6 +9,7 @@ import SingleListing from './SingleListing'
 import NavTabs from './NavTabs'
 import TabsContainer from './TabsContainer'
 import AccomodationContainer from './AccomodationContainer'
+import BookingsContainer from './BookingsContainer'
 export {
     FormRow,
     FormRowSelect,
@@ -20,5 +21,6 @@ export {
     SingleListing,
     NavTabs,
     TabsContainer,
-    AccomodationContainer
+    AccomodationContainer,
+    BookingsContainer
 }

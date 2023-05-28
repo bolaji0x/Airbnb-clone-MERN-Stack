@@ -6,6 +6,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 const initialState = {
   email: '',
   name: '',
+  lastName: '',
   password: '',
   isMember: true
 }
@@ -27,9 +28,9 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const {email, name, password, isMember} = values
+    const {email, name, lastName, password, isMember} = values
 
-    if(!email|| !password || (!isMember && !name )) {
+    if(!email|| !password || (!isMember && !name && !lastName )) {
       displayAlert()
       return
     }
@@ -37,6 +38,7 @@ const Register = () => {
 
     currentUser.set("email", values.email);
     currentUser.set("name", values.name);
+    currentUser.set("lastName", values.lastName);
     currentUser.set("password", values.password);
     
     if (values.isMember) {
@@ -77,17 +79,25 @@ const Register = () => {
         {showAlert && <Alert />}
         {!values.isMember && (
         <div>
-            {/* username */}
-        <FormRow
+          {/* name */}
+          <FormRow
             type='text'
             name='name'
             placeholder='Name'
             value={values.name}
             labelText='Name'
             handleChange={handleChange}
-        />
+          />
+          {/* lastName */}
+          <FormRow
+            type='text'
+            name='lastName'
+            placeholder='LastName'
+            value={values.lastName}
+            labelText='lastName'
+            handleChange={handleChange}
+          />
       
-            
         </div>
         )}
         {/* email */}

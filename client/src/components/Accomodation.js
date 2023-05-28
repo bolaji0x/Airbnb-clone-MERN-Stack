@@ -1,13 +1,14 @@
 import React from 'react'
-import { FaArrowRight, FaBars, FaCalendar, FaHome, FaIdCard, FaMoon, FaUser } from 'react-icons/fa'
+
 
 const Accomodation = ({_id, images, title, checkinTime, checkoutTime, price, description }) => {
+  const truncatedDescription = description.length > 20 ? `${description.substring(0, 200)}...` : description;
   return (
     <div className='booking-content' >
       <img className='booking-img' src={images[0]} alt={title} />
       <div className='booking-texts'>
           <h4 className='booking-title'>{title}</h4>
-          <p>{description}</p>
+          <p className='booking-desc'>{truncatedDescription}</p>
       </div>
     </div>
   )
@@ -16,7 +17,6 @@ const Accomodation = ({_id, images, title, checkinTime, checkoutTime, price, des
 export default Accomodation
 
 {/* 
-
 <div className='booking-content' >
       <img className='booking-img' src={images[0]} alt={title} />
       <div className='booking-texts'>
@@ -42,4 +42,3 @@ export default Accomodation
     </div>
 
 */}
-

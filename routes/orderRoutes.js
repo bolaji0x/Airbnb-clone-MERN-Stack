@@ -10,19 +10,16 @@ const {
   getHostBookings,
 } = require('../controllers/orderController');
 
-const {auth, authorizePermissions} = require('../middleware/auth.js');
+const {auth} = require('../middleware/auth.js');
 
-router
-  .route('/')
-  .post(auth, createOrder)
-  .get([auth, authorizePermissions('admin')], getAllOrders);
+router.route('/').post(auth, createOrder).get(auth, getAllOrders);
 
 router.route('/showAllMyOrders').get(auth, getCurrentUserOrders);
-router.route('/showSellerOrders').get(auth, getHostBookings);
+router.route('/showHostBookings').get(auth, getHostBookings);
 
 router
   .route('/:id')
-  .get([auth, authorizePermissions('admin')], getSingleOrder)
-  .patch([auth, authorizePermissions('admin')], updateOrder);
+  .get(auth, getSingleOrder)
+  .patch(auth, updateOrder);
 
 module.exports = router;

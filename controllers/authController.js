@@ -5,7 +5,7 @@ const {attachCookie} = require('../utils/attachCookie.js')
 const Token = require('../models/Token');
 
 const register = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, lastName, password, role } = req.body;
 
   if (!name || !email || !password) {
     throw new BadRequestError('please provide all values');
@@ -19,7 +19,7 @@ const register = async (req, res) => {
   const isFirstAccount = (await User.countDocuments({})) === 0;
   const userRole = role || (isFirstAccount ? 'admin' : 'user');
 
-  const user = await User.create({ name, email, password, role: userRole });
+  const user = await User.create({ name, email, password, lastName, role: userRole });
 
   const existingToken = user.createJWT()
 
@@ -32,6 +32,7 @@ const register = async (req, res) => {
     user: {
         name: user.name,
         email: user.email,
+        lastName: user.lastName,
         address: user.address, 
         role: user.role
     },

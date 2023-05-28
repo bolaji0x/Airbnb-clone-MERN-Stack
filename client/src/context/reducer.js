@@ -12,6 +12,8 @@ import {
     DISPLAY_ALERT, 
     GET_AUTHLISTINGS_BEGIN, 
     GET_AUTHLISTINGS_SUCCESS, 
+    GET_BOOKINGS_BEGIN, 
+    GET_BOOKINGS_SUCCESS, 
     GET_CURRENT_USER_BEGIN, GET_CURRENT_USER_SUCCESS, 
     GET_LISTINGS_BEGIN, 
     GET_LISTINGS_SUCCESS, 
@@ -201,6 +203,17 @@ const reducer = (state, action) => {
       }
     }
 
+    if (action.type === GET_BOOKINGS_BEGIN) {
+      return { ...state, isLoading: true, showAlert: false }
+    }
+    if (action.type === GET_BOOKINGS_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        orders: action.payload.orders,
+        totalOrders: action.payload.totalOrders
+      }
+    }
 
     if (action.type === GET_CURRENT_USER_BEGIN) {
         return { ...state, userLoading: true, showAlert: false };

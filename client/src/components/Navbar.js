@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Logo from './Logo'
 import { FaBars, FaBed, FaBox, FaBuilding, FaFilter, FaGlobe, FaGreaterThan, FaHockeyPuck, FaHotjar, FaLaptopHouse, FaMugHot, FaRedhat, FaSearch, FaSort, FaUmbrellaBeach, FaUserCircle, FaWater } from 'react-icons/fa'
 import { BiChevronLeft, BiChevronRight, BiSort } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
 
@@ -41,10 +42,11 @@ const Navbar = () => {
           <div className='right-nav'>
             <button className='ayh-btn each-rn'>Airbnb your home</button>
             <button className='each-rn'><FaGlobe className='globe-btn' /></button>
-            <div className='bar-user-btn each-rn'>
-              <button><FaBars className='bar-icon' /></button>
-              <button><FaUserCircle className='user-icon' /></button>
-            </div>
+
+            <Link to='/signup' className='bar-user-btn each-rn'>
+              <button type='button'><FaBars className='bar-icon' /></button>
+              <button type='button'><FaUserCircle className='user-icon' /></button>
+            </Link>
 
           </div>
           

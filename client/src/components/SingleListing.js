@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import LuxeLogo from './LuxeLogo'
 import { FaBars, FaGlobe, FaSearch, FaShare, FaUserCircle, FaHeart } from 'react-icons/fa'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useAppContext } from '../context/appContext'
 import { PaystackButton } from 'react-paystack';
 
@@ -72,7 +72,7 @@ if (!listing) {
 
   const formattedCheckin = formatDate(checkinTime);
   const formattedCheckout = formatDate(checkoutTime);
-  console.log(formattedCheckin)
+  
 
 
   const checkin = new Date(values.checkinTime);
@@ -130,10 +130,11 @@ if (!listing) {
           <div className='right-nav'>
             <button type='button' className='ayh-btn each-rn'>Airbnb your home</button>
             <button type='button' className='each-rn'><FaGlobe className='globe-btn' /></button>
-            <div className='bar-user-btn each-rn'>
+
+            <Link to='/signup' className='bar-user-btn each-rn'>
               <button type='button'><FaBars className='bar-icon' /></button>
               <button type='button'><FaUserCircle className='user-icon' /></button>
-            </div>
+            </Link>
 
           </div>
         </nav>

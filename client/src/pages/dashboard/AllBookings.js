@@ -1,8 +1,10 @@
 import React from 'react'
-
+import { BookingsContainer } from '../../components'
 const AllBookings = () => {
   return (
-    <div className='bookings-container profile-container bd-container'>AllBookings</div>
+    <div className='bookings-container profile-container bd-container'>
+      <BookingsContainer />
+    </div>
   )
 }
 
