@@ -65,14 +65,14 @@ const Footer = () => {
         <footer className='footer-section'>
             <div className='footer bd-container'>
                 <div className='left-footer'>
-                    <p className='footer-text'>C 2023 Airbnb, Inc</p>
+                    <p className='footer-text'>&#169; 2023 Airbnb, Inc</p>
                     <p className='footer-text'>Terms</p>
                     <p className='footer-text'>Sitemap</p>
                     <p className='footer-text'>Privacy</p>
                     <p className='footer-text'>Your Privacy Choices</p>
                 </div>
                 <div className='right-footer'>
-                    <FaGlobe className='footer-icon' />
+                    <FaGlobe className='footer-icon globe-icon' />
                     <p className='footer-text'>N NGN</p>
                     <p className='footer-text'>Support & resources</p>
                     <button onClick={handleToggleClick} className='toggle-fbtn'><FaArrowUp className='footer-icon' /></button>

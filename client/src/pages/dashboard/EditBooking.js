@@ -1,53 +1,69 @@
-import React, { useState } from 'react'
-import { BiCloudUpload } from 'react-icons/bi'
-import { FormRow, Alert } from '../../components'
-import { useAppContext } from '../../context/appContext'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Alert, FormRow } from '../../components'
+import { BiCloudUpload } from "react-icons/bi";
+import { useAppContext } from '../../context/appContext';
+import { useParams } from 'react-router-dom'
 
-const initialState = {
-    title: '',
-    description: '',
-    price: '',
-    address: '',
-    guestNo: '',
-    bedroomNo: '',
-    bedNo: '',
-    checkinTime: '',
-    checkoutTime: ''
-}
+const EditBooking = () => {
+    const {id} = useParams()
+    const {
+        isLoading,
+        displayAlert,
+        showAlert,
+        updateListing
+    } = useAppContext()
 
-const AddBooking = () => {
-    const { showAlert, createListing, displayAlert, isLoading } = useAppContext()
-    const [values, setValues] = useState(initialState);
-    
+
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [price, setPrice] = useState(0)
+    const [address, setAddress] = useState('')
+    const [guestNo, setGuestNo] = useState(0)
+    const [bedroomNo, setBedroomNo] = useState('')
+    const [bedNo, setBedNo] = useState('')
     const [checkinTime, setCheckinTime] = useState('');
     const [checkoutTime, setCheckoutTime] = useState('');
     const [selectedImages, setSelectedImages] = useState([]);
     const [imagePreviews, setImagePreviews] = useState([]);
 
-    const handleChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value });
-    };
-
-    const clearFormFields = () => {
-        setValues({
-            title: '',
-            description: '',
-            price: '',
-            address: '',
-            guestNo: '',
-            bedroomNo: '',
-            bedNo: '',
-            checkinTime: '',
-            checkoutTime: ''
-        });
-
-        setCheckinTime('')
-        setCheckoutTime('')
-        setSelectedImages([])
-        setImagePreviews([])
-      };
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = ('0' + (date.getMonth() + 1)).slice(-2); // Prepend '0' if necessary
+        const day = ('0' + date.getDate()).slice(-2); // Prepend '0' if necessary
+        const formattedDate = `${year}-${month}-${day}`;
       
-    const handleImageChange = (e) => {
+        return formattedDate;
+      };
+    
+    const formattedCheckin = formatDate(checkinTime);
+    const formattedCheckout = formatDate(checkoutTime);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`/api/v1/listings/${id}`)
+            const {listing} = data
+            console.log(listing)
+            setTitle(listing.title)
+            setDescription(listing.description)
+            setAddress(listing.address)
+            setPrice(listing.price)
+            setGuestNo(listing.guestNo)
+            setBedroomNo(listing.bedroomNo)
+            setBedNo(listing.bedNo)
+            setCheckinTime(listing.checkinTime)
+            setCheckoutTime(listing.checkoutTime)
+            setImagePreviews(listing.images)
+          } catch (error) {
+            console.log(error)
+          }
+        };
+        fetchData();
+    }, [id])
+
+    const updateListingImagesChange = (e) => {
         const files = Array.from(e.target.files);
     
         setSelectedImages(files);
@@ -59,9 +75,6 @@ const AddBooking = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
-
-        const { title, description, price, address, guestNo, bedroomNo, bedNo } = values
 
         if(!title ||!description || !price || !address || !guestNo || !bedroomNo || !bedNo || !checkinTime || !checkoutTime) {
             displayAlert()
@@ -83,22 +96,21 @@ const AddBooking = () => {
             myForm.append('images', image);
         });
 
-        createListing(myForm, clearFormFields);
+        updateListing(id, myForm);
            
           
-    }
-    
+    }    
+
   return (
-    <>
         <div className='accomodations-container profile-container bd-container'>
             <form encType='multipart/form-data' className='create-form' onSubmit={handleSubmit}>
                 {showAlert && <Alert />}
                 <FormRow 
                     type='text' 
-                    value={values.title}
+                    value={title}
                     labelText='Title' 
                     name='title'
-                    handleChange={handleChange}
+                    handleChange={(e) => setTitle(e.target.value)}
                 />
 
                 <div className='form-item each-create-input'>
@@ -107,8 +119,8 @@ const AddBooking = () => {
                         className='caption-input'
                         required
                         name="description"
-                        value={values.description}
-                        onChange={handleChange}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                     <label className="">Description</label>
                 </div>
@@ -117,9 +129,9 @@ const AddBooking = () => {
                 <FormRow 
                     type='number'
                     name='price'
-                    value={values.price} 
+                    value={price} 
                     labelText='Price per night'
-                    handleChange={handleChange} 
+                    handleChange={(e) => setPrice(e.target.value)} 
                 />
 
                 <div className='form-item each-create-input'>
@@ -128,8 +140,8 @@ const AddBooking = () => {
                         className='caption-input'
                         required
                         name="address"
-                        value={values.address}
-                        onChange={handleChange}
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
                     />
                     <label className="">Address</label>
                 </div>                
@@ -149,7 +161,7 @@ const AddBooking = () => {
                                 name="images"
                                 accept=".png, .jpg, .jpeg"
                                 multiple
-                                onChange={handleImageChange}     
+                                onChange={updateListingImagesChange}     
                             />
                         </div>
                         <div>
@@ -163,24 +175,24 @@ const AddBooking = () => {
                 <FormRow 
                     type='number' 
                     name='bedroomNo'
-                    value={values.bedroomNo}
-                    handleChange={handleChange}
+                    value={bedroomNo}
+                    handleChange={(e) => setBedroomNo(e.target.value)}
                     labelText='Bedroom Number' 
                 />
 
                 <FormRow 
                     type='number'
                     name='bedNo'
-                    value={values.bedNo}
-                    handleChange={handleChange} 
+                    value={bedNo}
+                    handleChange={(e) => setBedNo(e.target.value)} 
                     labelText='Bed Number' 
                 />
                 
                 <FormRow 
                     type='number'
                     name='guestNo'
-                    value={values.guestNo}
-                    handleChange={handleChange} 
+                    value={guestNo}
+                    handleChange={(e) => setGuestNo(e.target.value)} 
                     labelText='Max number of guests' 
                 />
 
@@ -188,7 +200,7 @@ const AddBooking = () => {
                     <label className=''>Check in time</label>
                     <FormRow 
                         type="date"
-                        value={checkinTime}
+                        value={formattedCheckin}
                         handleChange={(e) => setCheckinTime(e.target.value)}  
                     />
                 </div>
@@ -197,15 +209,14 @@ const AddBooking = () => {
                     <label className=''>Check out time</label>
                     <FormRow 
                         type="date" 
-                        value={checkoutTime}
+                        value={formattedCheckout}
                         handleChange={(e) => setCheckoutTime(e.target.value)}
                     />
                 </div>
-                <button disabled={isLoading} type='submit' className='btn login-btn' >Submit</button>
+                <button disabled={isLoading} type='submit' className='btn login-btn' >Update Listing</button>
             </form>
         </div>
-    </>
   )
 }
 
-export default AddBooking
+export default EditBooking 

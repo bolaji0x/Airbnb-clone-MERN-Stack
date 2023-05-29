@@ -31,6 +31,9 @@ import {
   CREATE_ORDER_ERROR,
   GET_BOOKINGS_SUCCESS,
   GET_BOOKINGS_BEGIN,
+  UPDATE_LISTING_BEGIN,
+  UPDATE_LISTING_SUCCESS,
+  UPDATE_LISTING_ERROR,
   
  
 
@@ -102,7 +105,7 @@ const AppProvider = ({ children }) => {
 
 
   const logoutUser = async () => {
-    await authFetch.get('/auth/logout');
+    await axios.get('/api/v1/auth/logout');
     dispatch({ type: LOGOUT_USER });
   };
   
@@ -164,6 +167,25 @@ const AppProvider = ({ children }) => {
         type: CREATE_LISTING_ERROR,
         payload: { msg: error.response.data.msg },
       })
+    }
+    clearAlert()
+  }
+
+  const updateListing = async (id, listingData) => {
+    dispatch({ type: UPDATE_LISTING_BEGIN });
+    try {
+      await authFetch.put(
+        `/listings/${id}`,
+        listingData
+      );
+  
+      dispatch({ type: UPDATE_LISTING_SUCCESS });
+    } catch (error) {
+      if (error.response.status !== 401) return;
+      dispatch({
+        type: UPDATE_LISTING_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
     }
     clearAlert()
   }
@@ -251,11 +273,7 @@ const AppProvider = ({ children }) => {
       dispatch({ type: CREATE_ORDER_SUCCESS, payload: {order} });
       
     } catch (error) {
-      if (error.response.status === 401) return;
-      dispatch({
-        type: CREATE_ORDER_ERROR,
-        payload: { msg: error.response.data.msg },
-      });
+      logoutUser();
       console.log(error)
     }
     clearAlert();
@@ -323,6 +341,7 @@ const AppProvider = ({ children }) => {
         clearFilters,
         getCurrentUser,
         createListing,
+        updateListing,
         getListings,
         getUserListings,
         getSingleListing,

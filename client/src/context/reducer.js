@@ -23,7 +23,10 @@ import {
     HANDLE_CHANGE, 
     LOGOUT_USER, 
     SETUP_USER_BEGIN, SETUP_USER_ERROR, 
-    SETUP_USER_SUCCESS 
+    SETUP_USER_SUCCESS, 
+    UPDATE_LISTING_BEGIN,
+    UPDATE_LISTING_ERROR,
+    UPDATE_LISTING_SUCCESS
 } from "./actions"
 
 import { initialState } from './appContext'
@@ -122,6 +125,31 @@ const reducer = (state, action) => {
       }
     }
     if (action.type === CREATE_LISTING_ERROR) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: action.payload.msg,
+      }
+    }
+    
+    if (action.type === UPDATE_LISTING_BEGIN) {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    if (action.type === UPDATE_LISTING_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'success',
+        alertText: 'Listing Updated!',
+      }
+    }
+    if (action.type === UPDATE_LISTING_ERROR) {
       return {
         ...state,
         isLoading: false,
