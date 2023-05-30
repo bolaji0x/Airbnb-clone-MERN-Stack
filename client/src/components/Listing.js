@@ -2,6 +2,8 @@ import React from 'react'
 import { BiHeart, BiStar } from 'react-icons/bi'
 import moment from 'moment'
 import { Link } from 'react-router-dom';
+import ImageScroll from './ImageScroll';
+
 const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
 
   // Parse checkinTime and checkoutTime into Date objects
@@ -17,18 +19,22 @@ const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
     <>
     <div className='listing-content'>
       <div className='each-listing'>
+
+      <ImageScroll images={images} />
+        {/*
         <Link to={`/listing/${_id}`} className='listing-feed-picture'><img src={images[0]} alt={title}  /></Link>
+      */}
         <div>
           <span className='title-rating'>
             <h3 className='listing-title'>{title}</h3>
             <span className='star-icontext'>
               <BiStar className='star-icon' />
-              <p className='star-text'>4.78</p>
+              <p className='star-text'>4.5</p>
             </span>
           </span>
           <p className='listing-text'>7,921 kilometeres away</p>
           <p className='listing-text'>{dateRange} </p>
-          <h3 className='listing-price'>N{price} night</h3>
+          <h3 className='listing-price'>₦{price.toLocaleString()} night</h3>
           
           <div className='heart-btn'><BiHeart className='heart-icon' /></div>
         </div>

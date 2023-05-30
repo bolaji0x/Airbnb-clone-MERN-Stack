@@ -790,6 +790,7 @@ input:checked + .slider:before {
 
 .listing-title, .listing-price {
   font-size: 11px;
+  text-transform: capitalize;
 }
 
 .title-rating {

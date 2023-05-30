@@ -71,18 +71,20 @@ if (!listing) {
   const formattedCheckin = formatDate(checkinTime);
   const formattedCheckout = formatDate(checkoutTime);
   
+  let subtotal = 0;
+  let stayDuration = 0;
 
+  if (values.checkinTime && values.checkoutTime) {
+    const checkin = new Date(values.checkinTime);
+    const checkout = new Date(values.checkoutTime);
+    stayDuration = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24)); // Convert to days
 
-  const checkin = new Date(values.checkinTime);
-  const checkout = new Date(values.checkoutTime);
-  const stayDuration = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24)); // Convert to days
+    subtotal = price * values.guestNo * stayDuration;
+  }
 
-  const subtotal = price * values.guestNo * stayDuration;
   let tax = 0.075 * subtotal;
   tax = Math.min(tax, 999).toFixed(3);
   const amount = Number(subtotal) + Number(tax);
-
-
 
 
   const resetForm = () => {
