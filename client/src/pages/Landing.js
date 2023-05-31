@@ -4,12 +4,12 @@ const Landing = () => {
   return (
     <>
       <div className=''>
-        <Navbar />
-        <div className='bd-container'>
+        <div className='nav-tabs'>
+          <Navbar />
           <TabsContainer />
-          <ListingContainer />
         </div>
-        
+
+        <div className='listings-container'><ListingContainer /></div>
         <Footer />
       </div>
     </>

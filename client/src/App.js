@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Register, Error, ProtectedRoute, Landing } from './pages'
 import { SingleListing } from './components'
 import { Profile, AddBooking, SharedLayout,  AllAccommodations, AllBookings, EditBooking } from './pages/dashboard'
+
 function App() {
   return (
     <Router>
@@ -26,6 +27,8 @@ function App() {
         <Route path='/signup' element={<Register />} />
         <Route path='/landing' element={<Landing />} />
         <Route path='/listing/:id' element={<SingleListing/>} />
+
+        
         
         <Route path='*' element={<Error />} />
       </Routes>

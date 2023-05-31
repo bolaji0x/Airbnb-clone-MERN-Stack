@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiHeart, BiStar } from 'react-icons/bi'
 import moment from 'moment'
 import { Link } from 'react-router-dom';
-import ImageScroll from './ImageScroll';
-
+import { FaGreaterThan, FaLessThan } from 'react-icons/fa'
+import SingleFeedImg from './SingleFeedImg';
 const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
+
+  
+
+
 
   // Parse checkinTime and checkoutTime into Date objects
   const checkinDate = new Date(checkinTime);
@@ -20,11 +24,8 @@ const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
     <div className='listing-content'>
       <div className='each-listing'>
 
-      <ImageScroll images={images} />
-        {/*
-        <Link to={`/listing/${_id}`} className='listing-feed-picture'><img src={images[0]} alt={title}  /></Link>
-      */}
-        <div>
+        <SingleFeedImg _id={_id} images={images} />
+        <Link to={`/listing/${_id}`} className='listing-img-texts'>
           <span className='title-rating'>
             <h3 className='listing-title'>{title}</h3>
             <span className='star-icontext'>
@@ -37,7 +38,7 @@ const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
           <h3 className='listing-price'>₦{price.toLocaleString()} night</h3>
           
           <div className='heart-btn'><BiHeart className='heart-icon' /></div>
-        </div>
+        </Link>
       </div>
 
     </div>

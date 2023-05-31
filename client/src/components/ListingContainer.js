@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/appContext'
 import Listing from './Listing'
 import {Loading} from '.'
 
 const ListingContainer = () => {
   const { isLoading, getListings, page, search, listings } = useAppContext()
+
+  const [showTotalPrice, setShowTotalPrice] = useState(true);
+
+  const handleToggle = () => {
+    setShowTotalPrice(!showTotalPrice);
+  };
 
   useEffect(() => {
     getListings()
@@ -24,12 +30,32 @@ const ListingContainer = () => {
   }
 
   return (
-    <div className='listing-content'>
-      {listings.map((listing) => {
-        return (<div key={listing._id} className='pl-div'><Listing key={listing._id} {...listing} /></div>)
-      })}
+    <>
+      <div className='toggle-price-container'>
+            <div className="toggle-price-content bd-container">
+
+            <div className='right-tpc'>
+                <h3 className='dtp-text'>{showTotalPrice ? "Display total price" : "Hide total price"}</h3>
+                <p className='fees-text'>Include all fess, before taxes</p>
+            </div>
+
+            <div>
+                <label className="switch">
+                <input type="checkbox" checked={!showTotalPrice} onChange={handleToggle} />
+                <span className="slider round"></span>
+                </label>
+            </div>
+            
+            </div>
+        </div>
+        <div className='listing-content'>
+          {listings.map((listing) => {
+            return (<div key={listing._id} className='pl-div'><Listing key={listing._id} {...listing} /></div>)
+          })}
       
     </div>
+    </>
+    
   )
 }
 

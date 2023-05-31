@@ -95,23 +95,7 @@ const TabsContainer = () => {
 
         </div>
 
-        <div className='toggle-price-container'>
-            <div className="toggle-price-content bd-container">
-
-            <div className='right-tpc'>
-                <h3 className='dtp-text'>{showTotalPrice ? "Display total price" : "Hide total price"}</h3>
-                <p className='fees-text'>Include all fess, before taxes</p>
-            </div>
-
-            <div>
-                <label className="switch">
-                <input type="checkbox" checked={!showTotalPrice} onChange={handleToggle} />
-                <span className="slider round"></span>
-                </label>
-            </div>
-            
-            </div>
-        </div>
+        
 
     </div>
     </>
