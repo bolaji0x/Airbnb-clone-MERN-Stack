@@ -31,7 +31,7 @@ const ListingContainer = () => {
 
   return (
     <>
-      <div className='toggle-price-container'>
+        <div className='toggle-price-container'>
             <div className="toggle-price-content bd-container">
 
             <div className='right-tpc'>

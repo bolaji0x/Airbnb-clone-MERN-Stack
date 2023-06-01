@@ -16,7 +16,6 @@ function App() {
             </ProtectedRoute>
           }
         >
-          
           <Route index element={<Profile />} />
           <Route path='all-accommodations' element={<AllAccommodations />} />
           <Route path='add-booking' element={<AddBooking />} />
@@ -25,7 +24,7 @@ function App() {
         </Route>
         
         <Route path='/signup' element={<Register />} />
-        <Route path='/landing' element={<Landing />} />
+        <Route path='/homepage' element={<Landing />} />
         <Route path='/listing/:id' element={<SingleListing/>} />
 
         

@@ -94,9 +94,6 @@ const TabsContainer = () => {
 
 
         </div>
-
-        
-
     </div>
     </>
   )

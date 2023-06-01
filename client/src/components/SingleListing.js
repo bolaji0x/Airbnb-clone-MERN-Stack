@@ -4,6 +4,7 @@ import { FaBars, FaGlobe, FaSearch, FaShare, FaUserCircle, FaHeart } from 'react
 import { Link, useParams } from 'react-router-dom'
 import { useAppContext } from '../context/appContext'
 import { PaystackButton } from 'react-paystack';
+import SingleListingImg from './SingleListingImg'
 
 const initialState = {
   checkinTime: '',
@@ -53,7 +54,14 @@ const SingleListing = () => {
   }, [])
 
 if (!listing) {
-  return <h1 className='no-post'>Listing Not Found</h1>
+  return (
+    <div>
+      <h1 className='no-listing'>Listing Not Found</h1>
+      <div className='refresh-btn'>
+        <button className='refresh-discover' onClick={() => getSingleListing(id)}>Refresh Page</button>
+    </div>
+    </div>
+  )
 } else {
   const {title, description, images, guestNo, bedroomNo, bedNo, price, checkinTime, checkoutTime } = listing
 
@@ -164,7 +172,12 @@ if (!listing) {
                     </div>
                   </div>
                 </div>
+
+                <SingleListingImg id={id} images={images} />
+                {/*
                 <div className='box2'><img className='listing-img' src={images[0]} alt={title} /></div>
+
+              */}
               </div>
               
           </div>

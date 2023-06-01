@@ -9,7 +9,7 @@ const Landing = () => {
           <TabsContainer />
         </div>
 
-        <div className='listings-container'><ListingContainer /></div>
+        <div className='bd-container listings-container'><ListingContainer /></div>
         <Footer />
       </div>
     </>

@@ -157,9 +157,18 @@ ul, li {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-
+.acount {
+  padding-top: 1rem;
+}
 .dashboard-page {
   padding-top: 6rem;
+}
+
+.auth-nav {
+  position: fixed;
+  z-index: 99;
+  background-color: var(--white);
+  width: 100%;
 }
 
 /* ===== Form Row Section ===== */
@@ -283,7 +292,7 @@ ul, li {
 }
 
 .refresh-discover {
-  margin-top: 2rem;
+  margin-top: 1rem;
   background-color: var(--red-100);
   color: var(--white);
   border: none;
@@ -474,10 +483,11 @@ ul, li {
 .nav-tabs {
   position: fixed;
   z-index: 99;
-  order: 1px solid red;
+  boder: 1px solid red;
   bakground-color: yellow;
   width: 100%;
   background-color: var(--white);
+  padding-top: 1rem;
 }
 .nav-container {
   max-width: 1400px;
@@ -497,9 +507,10 @@ header {
   background-color: var(--white);
   width: 100%;
   -index: 99;
-  order: 1px solid green;
+  brder: 1px solid green;
   background-color: var(--white);
   top: 0;
+  padding: .5rem 0;
 
 }
 
@@ -705,8 +716,8 @@ header {
   width: calc(100% - 1rem);
   margin-left: .5rem;
   margin-right: .5rem;
-  border: 1px solid blue;
-  pdding-top: 8rem;
+  brder: 1px solid blue;
+  padding-top: .5rem;
 }
 
 .toggle-price-content {
@@ -717,7 +728,7 @@ header {
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: .5rem .75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .right-tpc {
   display: grid;
@@ -795,16 +806,16 @@ input:checked + .slider:before {
 /* =======  Listing Container =========*/
 
 .listings-container {
-  padding-top: 9rem;
+  padding-top: 10rem;
 }
 .listing-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
   border-radius: var(--borderRadius);
   width: 100%;
   height: 100%;
-  margin-bottom: 4rem;
+  margin-botom: .4rem;
 }
 
 
@@ -1038,7 +1049,7 @@ input:checked + .slider:before {
 /* ====== Single Listing ====== */
 
 .listing-container {
-  padding-top: 250px;
+  padding-top: 1.5rem;
 
 }
 
@@ -1102,6 +1113,7 @@ input:checked + .slider:before {
   font-size: 1.3rem;
   font-weight: var(--thick-font);
   color: var(--black-100);
+  text-transform: capitalize;
 }
 
 .listing-link {
@@ -1125,8 +1137,22 @@ input:checked + .slider:before {
   align-items: center;
 }
 
-
 .listing-img {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.listing-img img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 250px;
+  display: block;
+  filter: brightness(90%);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.isting-img img {
   width: 100%;
   object-fit: cover;
   height: 250px;
@@ -1153,6 +1179,7 @@ input:checked + .slider:before {
 .slisting-title {
   font-size: 1.5rem;
   font-weight: var(--thick-font);
+  text-transform: capitalize;
 }
 
 .slisting-text {
@@ -1283,6 +1310,12 @@ input:checked + .slider:before {
   margin-bottom: 1rem;
 }
 
+.no-listing {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 4rem;
+}
+
 /* ====== Profile Section ========== */
 
 .profile-container {
@@ -1364,17 +1397,21 @@ input:checked + .slider:before {
 
 }
 .booking-content {
-  border: 1px solid green;
-  border-radius: 10px;
+  brder: 1px solid green;
+  brder-radius: 50px;
   display: flex;
   heght: 150px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--black-200);
 }
 
 .booking-img {
   height: 100%;
   width: 150px;
   object-fit: cover;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 
 }
 
@@ -1382,15 +1419,19 @@ input:checked + .slider:before {
   padding: .5rem;
   width: 100%;
   background-color: var(--black-400);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .booking-title {
   font-size: 14px;
   font-weight: var(--thicker-font);
+  text-transform: capitalize;
 }
 
 .booking-desc {
   font-size: 12px;
+  text-transform: capitalize;
 }
 
 .booking-label-icon {
@@ -1499,13 +1540,16 @@ input:checked + .slider:before {
   /* =========== Navbar =======*/
 
   header {
+    padding: 0;
     border-bottom: 1px solid var(--border-color);
   }
 
   .tabs-container {
-    margin-top: 6rem;
+    mrgin-top: 6rem;
     
   }
+
+  
 
   .nav-container {
     display: flex;
@@ -1640,7 +1684,7 @@ input:checked + .slider:before {
   /* ====== Single Listing =====*/
 
   .listing-container {
-    padding-top: 6rem;
+    padding-top: 1rem;
   }
 
   .listing-textimg {
@@ -1652,8 +1696,8 @@ input:checked + .slider:before {
     display: flex;
   }
 
-  .listing-img {
-    position: unset;
+  .listing-img img {
+    postion: unset;
     width: 100%;
     object-fit: cover;
     height: 420px;
