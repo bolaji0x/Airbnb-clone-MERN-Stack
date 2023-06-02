@@ -11,6 +11,7 @@ import TabsContainer from './TabsContainer'
 import AccomodationContainer from './AccomodationContainer'
 import BookingsContainer from './BookingsContainer'
 import SearchContainer from './SearchContainer'
+import PageBtnContainer from './PageBtnContainer'
 export {
     FormRow,
     FormRowSelect,
@@ -24,5 +25,6 @@ export {
     TabsContainer,
     AccomodationContainer,
     BookingsContainer,
-    SearchContainer
+    SearchContainer,
+    PageBtnContainer
 }

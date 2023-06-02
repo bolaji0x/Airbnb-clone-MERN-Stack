@@ -31,7 +31,7 @@ const ListingContainer = () => {
 
   return (
     <>
-        <div className='toggle-price-container'>
+      <div className='toggle-price-container'>
             <div className="toggle-price-content bd-container">
 
             <div className='right-tpc'>
@@ -47,13 +47,14 @@ const ListingContainer = () => {
             </div>
             
             </div>
-        </div>
-        <div className='listing-content'>
+      </div>
+
+      <div className='listing-content'>
           {listings.map((listing) => {
             return (<div key={listing._id} className='pl-div'><Listing key={listing._id} {...listing} /></div>)
           })}
       
-    </div>
+      </div>
     </>
     
   )

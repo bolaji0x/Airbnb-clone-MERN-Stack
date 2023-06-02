@@ -1,6 +1,9 @@
 import React from 'react'
-import { ListingContainer, Navbar, Footer, TabsContainer } from '../components'
+import { useAppContext } from '../context/appContext'
+import { ListingContainer, Navbar, Footer, TabsContainer, PageBtnContainer } from '../components'
 const Landing = () => {
+  const { numOfPages } = useAppContext()
+
   return (
     <>
       <div className=''>
@@ -10,6 +13,9 @@ const Landing = () => {
         </div>
 
         <div className='bd-container listings-container'><ListingContainer /></div>
+
+        <div >{numOfPages > 1 && <PageBtnContainer />}</div>
+
         <Footer />
       </div>
     </>

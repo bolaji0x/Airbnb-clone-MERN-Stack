@@ -299,7 +299,8 @@ ul, li {
   padding: .75rem 1rem;
   font-weight: var(--thicker-font);
   font-size: var(--smaller-font-size);
-  border-radius: var(--borderRadius);   
+  border-radius: var(--borderRadius);  
+  cursor: pointer; 
 }
 
 .enq-btn-section {
@@ -807,6 +808,7 @@ input:checked + .slider:before {
 
 .listings-container {
   padding-top: 10rem;
+  margin-bottom: 1rem;
 }
 .listing-content {
   display: grid;
@@ -1342,12 +1344,23 @@ input:checked + .slider:before {
   color: var(--black-100);
   cursor: pointer;
 }
+.each-tab-btn.active {
+  background-color: var(--red-100); 
+  color: var(--white); 
+}
 
 .each-tab-icon {
   font-size: 12px;
   color: var(--black-100);
   margin-bottom: 5px;
 }
+
+.each-tab-icon.active {
+  font-size: 12px;
+  color: var(--white);
+  margin-bottom: unset;
+}
+
 
 .each-tab-label {
  font-size: 11px;
@@ -1530,6 +1543,57 @@ input:checked + .slider:before {
   margin-left: 10px;
 }
 
+
+/*  ====== PageBtn Container ===== */
+
+.btn-wrapper {
+  position: absolute;
+  right: 0;
+  display: flex;
+  margin-right: 1rem;
+  padding-bottom: 1rem;
+}
+
+
+.pageBtn {
+  background: var(--white);
+  border-color: var(--border-color);
+  width: 25px;
+  height: 30px;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--black-100);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.active {
+  background: var(--red-100);
+  color: var(--white);
+}
+.prev-btn,
+.next-btn {
+  height: 30px;
+  padding: .5rem 1rem;
+  background: var(--white);
+  color: var(--black-100);
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: var(--thicker-font);
+  border: 1px solid var(--border-color);
+}
+.prev-btn {
+  border-top-left-radius: var(--borderRadius);
+  border-bottom-left-radius: var(--borderRadius);
+}
+.next-btn {
+  border-top-right-radius: var(--borderRadius);
+  border-bottom-right-radius: var(--borderRadius);
+}
 
 
 @media screen and (min-width: 680px) {
@@ -1747,18 +1811,23 @@ input:checked + .slider:before {
   .each-tab-btn {
     display: flex;
     background-color: var(--black-500);
+    color: var(--black-100);
     align-items: center;
     border-radius: 35px;
     padding: .5rem 1rem;
     margin-left: 10px;
+    cursor: pointer;
   }
+
+  
 
   .each-tab-icon {
     font-size: 12px;
-    color: var(--black-100);
+    coor: var(--black-100);
     margin-bottom: unset;
   }
 
+  
 
   /* ========== Booking Section ======== */
   

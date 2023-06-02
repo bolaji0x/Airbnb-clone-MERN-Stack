@@ -20,14 +20,12 @@ function App() {
           <Route path='all-accommodations' element={<AllAccommodations />} />
           <Route path='add-booking' element={<AddBooking />} />
           <Route path='all-bookings' element={<AllBookings />} />
-          <Route path='/edit-booking/:id' element={<EditBooking />} />
+          <Route path='edit-booking/:id' element={<EditBooking />} />
         </Route>
         
         <Route path='/signup' element={<Register />} />
         <Route path='/homepage' element={<Landing />} />
         <Route path='/listing/:id' element={<SingleListing/>} />
-
-        
         
         <Route path='*' element={<Error />} />
       </Routes>
