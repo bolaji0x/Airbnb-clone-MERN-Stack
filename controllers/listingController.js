@@ -13,6 +13,7 @@ cloudinary.config({
 
 const upload = multer({ dest: 'uploads/' });
 
+/*
 const createListing = async (req, res) => {
     const { title, description, price, address, guestNo, bedroomNo, bedNo, checkinTime, checkoutTime } = req.body;
     const images = [];
@@ -42,6 +43,43 @@ const createListing = async (req, res) => {
     await listing.save();
     res.status(StatusCodes.CREATED).json({ listing }); 
 };
+
+*/
+
+const createListing = async (req, res) => {
+  const { title, description, price, address, guestNo, bedroomNo, bedNo, checkinTime, checkoutTime } = req.body;
+
+  // Validate required fields
+  if (!title || !description || !price || !address || !guestNo || !bedroomNo || !bedNo || !checkinTime || !checkoutTime) {
+    throw new CustomError.BadRequestError('Please provide all values');
+  }
+
+  // Upload images to Cloudinary in parallel
+  const uploadPromises = req.files.map(file => cloudinary.uploader.upload(file.path));
+  const uploadedImages = await Promise.all(uploadPromises);
+  const images = uploadedImages.map(result => result.secure_url);
+
+  // Create new listing in the database
+  const listing = new Listing({
+    title,
+    description,
+    price,
+    images,
+    address,
+    guestNo,
+    bedroomNo,
+    bedNo,
+    checkinTime,
+    checkoutTime,
+    createdBy: req.user.userId
+  });
+
+  await listing.save();
+
+  res.status(StatusCodes.CREATED).json({ listing });
+};
+
+
 
 const getCurrentUserListings = async (req, res) => {
   const { sort } = req.query

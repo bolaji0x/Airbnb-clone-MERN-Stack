@@ -1,14 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BiHeart, BiStar } from 'react-icons/bi'
 import moment from 'moment'
 import { Link } from 'react-router-dom';
-import { FaGreaterThan, FaLessThan } from 'react-icons/fa'
+
 import SingleFeedImg from './SingleFeedImg';
 const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
-
-  
-
-
 
   // Parse checkinTime and checkoutTime into Date objects
   const checkinDate = new Date(checkinTime);

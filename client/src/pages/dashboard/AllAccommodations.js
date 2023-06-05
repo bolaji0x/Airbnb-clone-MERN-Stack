@@ -9,7 +9,7 @@ const AllAccommodations = () => {
     <>
         <div>
           <div className='bookings-container profile-container bd-container'>
-            <Link to='/add-booking' className='add-bbtn'>
+            <Link to='/add-listing' className='add-bbtn'>
               <FaPlus className='addb-icon' /> 
               <label className='addb-text'>Add new place</label>
             </Link>

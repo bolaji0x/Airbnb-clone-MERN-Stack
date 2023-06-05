@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 const SingleFeedImg = ({ _id, images }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -22,7 +21,7 @@ const SingleFeedImg = ({ _id, images }) => {
           }}
         >
           {images.map((image, index) => (
-            <img key={index} src={image} alt={`Image ${index}`} />
+            <img key={index} src={image} alt={`${index}`} />
           ))}
         </div>
       </div>

@@ -1,15 +1,15 @@
 import Profile from "./Profile";
-import AddBooking from "./AddBooking";
+import AddListing from "./AddListing";
 import SharedLayout from "./SharedLayout";
 import AllAccommodations from './AllAccommodations'
 import AllBookings from "./AllBookings";
-import EditBooking from "./EditBooking";
+import EditListing from "./EditListing";
 export {
     Profile,
-    AddBooking,
+    AddListing,
     AllAccommodations,
     AllBookings,
-    EditBooking,
+    EditListing,
     SharedLayout
 }
 

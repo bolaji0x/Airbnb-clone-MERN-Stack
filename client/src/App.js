@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { Register, Error, ProtectedRoute, Landing } from './pages'
 import { SingleListing } from './components'
-import { Profile, AddBooking, SharedLayout,  AllAccommodations, AllBookings, EditBooking } from './pages/dashboard'
+import { Profile, AddListing, SharedLayout,  AllAccommodations, AllBookings, EditListing } from './pages/dashboard'
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
         >
           <Route index element={<Profile />} />
           <Route path='all-accommodations' element={<AllAccommodations />} />
-          <Route path='add-booking' element={<AddBooking />} />
+          <Route path='add-listing' element={<AddListing />} />
           <Route path='all-bookings' element={<AllBookings />} />
-          <Route path='edit-booking/:id' element={<EditBooking />} />
+          <Route path='edit-listing/:id' element={<EditListing />} />
         </Route>
         
         <Route path='/signup' element={<Register />} />

@@ -5,10 +5,12 @@ import { Outlet } from 'react-router-dom'
 const SharedLayout = () => {
   return (
     <main className='account'>
-      <div className='auth-nav'><Navbar /></div>
+      <div className='auth-nav'>
+        <Navbar />
+      </div>
       <div className='dashboard-page'>
-        <NavTabs />
-        <div className=''>
+        <div className='home-head'><NavTabs /></div>
+        <div className='dashboard-content'>
           <Outlet />
         </div>
       </div>

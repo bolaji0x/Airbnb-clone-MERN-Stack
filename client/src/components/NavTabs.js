@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaArrowRight, FaBars, FaCalendar, FaHome, FaIdCard, FaMoon, FaUser } from 'react-icons/fa'
+import { FaBars, FaHome, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 const NavTabs = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -10,10 +10,10 @@ const NavTabs = () => {
   return (
     <>
       <div>
-            <div className='prfile-content'>
+            <div className='profile-content'>
                 <div className='profile-head'>
                     <Link 
-                        to='' 
+                        to='/' 
                         className={`each-tab-btn ${activeTab === 0 ? 'active' : ''}`}
                         onClick={() => handleTabClick(0)}
                     >
@@ -37,8 +37,6 @@ const NavTabs = () => {
                         <label className='each-tab-label'>My Accomodations</label>
                     </Link>
                 </div>
-
-                
             </div>
         </div>
     </>

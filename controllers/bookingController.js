@@ -6,8 +6,6 @@ const CustomError = require('../errors');
 const { checkPermissions } = require('../utils');
 
 
-
-
 const createBooking = async (req, res) => {
   const { listingId, status, checkinTime, checkoutTime, guestNo } = req.body;
   const listing = await Listing.findById(listingId);

@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { FaBed, FaBox, FaBuilding,  FaHockeyPuck, FaHotjar, FaLaptopHouse, FaMugHot, FaRedhat, FaUmbrellaBeach, FaWater } from 'react-icons/fa'
 import { BiChevronLeft, BiChevronRight, BiSort } from 'react-icons/bi'
 
-
 const tabs = [
     { icon: <FaUmbrellaBeach />, label: 'Beachfront' },
     { icon: <FaLaptopHouse />, label: 'Castles' },
@@ -19,13 +18,7 @@ const tabs = [
   
 
 const TabsContainer = () => {
-
     const [startIndex, setStartIndex] = useState(0);
-    const [showTotalPrice, setShowTotalPrice] = useState(true);
-
-    const handleToggle = () => {
-        setShowTotalPrice(!showTotalPrice);
-    };
 
     const handleNextTabClick = () => {
         let nextIndex = startIndex + 1;

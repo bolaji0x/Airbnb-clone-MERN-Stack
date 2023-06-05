@@ -164,6 +164,10 @@ ul, li {
   padding-top: 6rem;
 }
 
+.dashboard-content {
+  padding-top: 5rem;
+}
+
 .auth-nav {
   position: fixed;
   z-index: 99;
@@ -477,8 +481,6 @@ ul, li {
 .nav-tabs {
   position: fixed;
   z-index: 99;
-  boder: 1px solid red;
-  bakground-color: yellow;
   width: 100%;
   background-color: var(--white);
   padding-top: 1rem;
@@ -488,8 +490,6 @@ ul, li {
   width: calc(100% - 2rem);
   margin-left: 1rem;
   margin-right: 1rem;
-  paddng: 1rem 0;
-  borer: 1px solid red;
 }
 
 .airbnb-logo {
@@ -497,15 +497,11 @@ ul, li {
 }
 
 header {
-  osition: fixed;
   background-color: var(--white);
   width: 100%;
-  -index: 99;
-  brder: 1px solid green;
   background-color: var(--white);
   top: 0;
-  padding: .5rem 0;
-
+  padding: 1rem 0;
 }
 
 
@@ -516,19 +512,12 @@ header {
   align-items: center;
   box-shadow: var(--shadow-3);
   border-radius: 40px;
-  pading: .5rem 0;
   width: 100%;
   padding-left: 12px;
 }
 
 
-.any-input {
-  dsplay: grid;
-  with: 100%;
-}
-
 .search-tab {
-  borer: 1px solid green;
   padding: 10px;
   width: 100%;
 }
@@ -578,10 +567,7 @@ header {
   color: var(--black-100);
 }
 
-.any-search {
-  postion: absolute;
-}
- 
+
 .any-filter-btn {
   position: absolute;
   top: 16px;
@@ -632,11 +618,7 @@ header {
   align-items: center;
   width: 100%;
   margin: 0;
-  mrgin-top: 3.65rem;
-  bordr: 1px solid red;
-  postion: fixed;
   background-color: var(--white);
-  z-idex: 99;
   
 }
 
@@ -710,7 +692,6 @@ header {
   width: calc(100% - 1rem);
   margin-left: .5rem;
   margin-right: .5rem;
-  brder: 1px solid blue;
   padding-top: .5rem;
 }
 
@@ -801,7 +782,6 @@ input:checked + .slider:before {
 
 .listings-container {
   padding-top: 10rem;
-  margin-botom: 1rem;
 }
 .listing-content {
   display: grid;
@@ -810,7 +790,6 @@ input:checked + .slider:before {
   border-radius: var(--borderRadius);
   width: 100%;
   height: 100%;
-  margin-botom: .4rem;
 }
 
 
@@ -906,9 +885,6 @@ input:checked + .slider:before {
 }
 
 
-
-
-
 /* ======= Footer Section ===== */
 
 .footer-container {
@@ -923,7 +899,6 @@ input:checked + .slider:before {
   z-index: 99;
   box-shadow: unset;
   margin-top: 4rem;
-  rder: 1px solid red;
   bottom: 0;
 }
 
@@ -937,9 +912,6 @@ input:checked + .slider:before {
   display: grid;
   background-color: var(--white);
   width: 100%;
-  txt-align: center;
-  borer: 1px solid red;
-  justif-content: center;
 }
 
 .left-footer {
@@ -953,15 +925,11 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  tet-align: center;
-  borer: 1px solid red;
-  jusify-content: center;
 }
 
 .footer-text {
   font-size: 11px;
   color: var(--black-200);
-  mrgin-left: 15px;
 }
 
 .globe-icon {
@@ -970,7 +938,6 @@ input:checked + .slider:before {
 
 .footer-icon {
   font-size: 12px;
-  magin-left: 15px;
 }
 
 .toggle-fbtn {
@@ -978,21 +945,13 @@ input:checked + .slider:before {
 }
 
 
-
-
-
-
-
-/* ===footer section===*/
-
-
+/* ===Footer section===*/
 
 
 .footer-modal {
   position: fixed;
   background-color: var(--white);
   padding: 1rem;
-  borer: 1px solid blue;
   height: 50%;
   bottom: 4.2rem;
   overflow-y: scroll;
@@ -1164,7 +1123,6 @@ input:checked + .slider:before {
 
 .listing-textimg {
   width: 100%;
-  brder: 2px solid red;
 }
 .listing-texts {
   margin-bottom: 1.5rem;
@@ -1319,7 +1277,6 @@ input:checked + .slider:before {
   background-color: var(--purple-100);
   color: var(--white);
   border-radius: 10px;
-  with: 100%;
   font-size: 13px;
   padding: 15px 15px;
   font-weight: var(--thicker-font);
@@ -1335,12 +1292,21 @@ input:checked + .slider:before {
   margin-left: 1rem;
   margin-right: 1rem;
 }
+
+.home-head {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  top: 5.5rem;
+}
 .profile-head {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
   justify-content: center;
+  background-color: var(--white);
+  padding: 1rem 0;
 }
+
 
 .each-tab-btn {
   display: grid;
@@ -1376,10 +1342,7 @@ input:checked + .slider:before {
  margin-left: 4px;
  font-weight: var(--thicker-font);
 }
-.profile-content {
-  border: 1px solid green;
-  ma-width: 400px;
-}
+
 .profile-text {
   font-size: 14px;
   text-align: center;
@@ -1415,14 +1378,9 @@ input:checked + .slider:before {
  margin-left: 5px;
 }
 
-.addb-icon {
 
-}
 .booking-content {
-  brder: 1px solid green;
-  brder-radius: 50px;
   display: flex;
-  heght: 150px;
   margin-bottom: 10px;
   text-decoration: none;
   color: var(--black-200);
@@ -1498,7 +1456,9 @@ input:checked + .slider:before {
 
 
 /* ===== Add Booking =======*/
-
+.create-form {
+  margin-bottom: 2rem;
+}
 .eci-desc {
   font-size: 12px;
   margin-bottom: 5px;
@@ -1532,7 +1492,6 @@ input:checked + .slider:before {
   background-color: var(--black-500);
   width: 50px;
   color: var(--black-300);
-  marin-left: .8rem;
   font-size: .8rem;
   display: flex;
   flex-direction: column;
@@ -1605,6 +1564,30 @@ input:checked + .slider:before {
 }
 
 
+/* ======= Error Section  ====== */
+
+.error-content {
+  margin-top: 2rem;
+  text-align: center;
+  margin-top: 6rem;
+}
+
+.error-title {
+  font-size: var(--small-font-size);
+  margin-bottom: 1.2rem;
+}
+
+.error-desc {
+  font-size: .8rem;
+  max-width: var(--small-width);
+  line-height: 1.2rem;
+  margin: 0 auto;
+}
+
+.error-link {
+  color: blue;
+} 
+
 @media screen and (min-width: 680px) {
   body {
     margin: 0;
@@ -1616,13 +1599,6 @@ input:checked + .slider:before {
     padding: 0;
     border-bottom: 1px solid var(--border-color);
   }
-
-  .tabs-container {
-    mrgin-top: 6rem;
-    
-  }
-
-  
 
   .nav-container {
     display: flex;
@@ -1644,7 +1620,6 @@ input:checked + .slider:before {
     align-items: center;
     box-shadow: var(--shadow-3);
     border-radius: 25px;
-    pdding: .5rem 0;
     width: 310px;
   }
 
@@ -1762,7 +1737,6 @@ input:checked + .slider:before {
 
   .listing-textimg {
     width: 70%;
-    brder: 2px solid red;
   }
 
   .listing-nav {
@@ -1770,7 +1744,6 @@ input:checked + .slider:before {
   }
 
   .listing-img img {
-    postion: unset;
     width: 100%;
     object-fit: cover;
     height: 420px;
@@ -1798,10 +1771,7 @@ input:checked + .slider:before {
 
   .lisitng-grid {
     display: flex;
-    rid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
-    ap: 1rem;
-    rder: 1px solid green;
     width: 100%;
   }
 
@@ -1811,11 +1781,14 @@ input:checked + .slider:before {
     box-shadow: var(--shadow-3);
     width: 350px;
     height: 380px;
-    widh: 80%;
   }
   
 
   /* ======= Profile Section ===== */
+
+  .home-head {
+    top: 4.6rem;
+  }
 
   .each-tab-btn {
     display: flex;
@@ -1828,18 +1801,19 @@ input:checked + .slider:before {
     cursor: pointer;
   }
 
-  
 
   .each-tab-icon {
     font-size: 12px;
-    coor: var(--black-100);
     margin-bottom: unset;
   }
 
   
 
   /* ========== Booking Section ======== */
-  
+  .dashboard-content {
+    padding-top: 3rem;
+  }
+
   .booking-label-icon {
     display: flex;
   }

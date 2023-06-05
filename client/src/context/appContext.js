@@ -39,7 +39,6 @@ import {
 } from './actions'
 
 
-
 const initialState = {
   userLoading: true,
   isLoading: false,
