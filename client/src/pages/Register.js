@@ -68,7 +68,7 @@ const Register = () => {
   return (
     <React.Fragment>
       {user && <Navigate to='/' />}
-      <section >
+      <section>
       <div className='form-container'>
         <form 
           encType="multipart/form-data"  className='form-section' 

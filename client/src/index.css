@@ -233,7 +233,6 @@ ul, li {
   height: 70vh;
 }
 .form-section {
-  bordr: 1px solid green;
   box-shadow: var(--shadow-3);
   padding: 1.2rem 1rem;
   max-width: 450px;
@@ -356,15 +355,11 @@ ul, li {
 
 
 .form-date-flex {
-  diplay: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.form-date-flex div {
-  magin-left: 5px;
-}
 
 .each-form-date {
   display: grid;
@@ -475,9 +470,7 @@ ul, li {
   
 }
 
-.create-form {
-  mrgin-top: 6rem;
-}
+
 
 
 /* ====== Navbar Container ====== */
@@ -808,7 +801,7 @@ input:checked + .slider:before {
 
 .listings-container {
   padding-top: 10rem;
-  margin-bottom: 1rem;
+  margin-botom: 1rem;
 }
 .listing-content {
   display: grid;
@@ -1316,6 +1309,22 @@ input:checked + .slider:before {
   text-align: center;
   font-size: 1rem;
   margin-top: 4rem;
+}
+
+.lcout-cont {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.lcout-btn {
+  background-color: var(--purple-100);
+  color: var(--white);
+  border-radius: 10px;
+  with: 100%;
+  font-size: 13px;
+  padding: 15px 15px;
+  font-weight: var(--thicker-font);
+  
+  text-decoration: none;
 }
 
 /* ====== Profile Section ========== */

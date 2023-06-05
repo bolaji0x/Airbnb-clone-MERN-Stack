@@ -3,12 +3,12 @@ import {
     CLEAR_ALERT, 
     CLEAR_FILTERS, 
     CLEAR_VALUES, 
+    CREATE_BOOKING_BEGIN, 
+    CREATE_BOOKING_ERROR, 
+    CREATE_BOOKING_SUCCESS, 
     CREATE_LISTING_BEGIN, 
     CREATE_LISTING_ERROR, 
     CREATE_LISTING_SUCCESS, 
-    CREATE_ORDER_BEGIN, 
-    CREATE_ORDER_ERROR, 
-    CREATE_ORDER_SUCCESS, 
     DISPLAY_ALERT, 
     GET_AUTHLISTINGS_BEGIN, 
     GET_AUTHLISTINGS_SUCCESS, 
@@ -208,20 +208,20 @@ const reducer = (state, action) => {
     }
 
 
-    if (action.type === CREATE_ORDER_BEGIN) {
+    if (action.type === CREATE_BOOKING_BEGIN) {
       return { ...state, isLoading: true }
     }
-    if (action.type === CREATE_ORDER_SUCCESS) {
+    if (action.type === CREATE_BOOKING_SUCCESS) {
       return {
         ...state,
         isLoading: false,
         showAlert: true,
-        order: action.payload.order,
+        booking: action.payload.booking,
         alertType: 'success',
-        alertText: 'Order created',
+        alertText: 'Booking created',
       }
     }
-    if (action.type === CREATE_ORDER_ERROR) {
+    if (action.type === CREATE_BOOKING_ERROR) {
       return {
         ...state,
         isLoading: false,
@@ -238,8 +238,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         isLoading: false,
-        orders: action.payload.orders,
-        totalOrders: action.payload.totalOrders
+        bookings: action.payload.bookings,
+        totalBookings: action.payload.totalBookings,
+        numOfPages: action.payload.numOfPages
       }
     }
 

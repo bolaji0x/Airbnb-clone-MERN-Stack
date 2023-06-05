@@ -26,14 +26,13 @@ import {
   GET_SINGLELISTING_BEGIN,
   GET_SINGLELISTING_SUCCESS,
   GET_SINGLELISTING_ERROR,
-  CREATE_ORDER_BEGIN,
-  CREATE_ORDER_SUCCESS,
-  CREATE_ORDER_ERROR,
   GET_BOOKINGS_SUCCESS,
   GET_BOOKINGS_BEGIN,
   UPDATE_LISTING_BEGIN,
   UPDATE_LISTING_SUCCESS,
   UPDATE_LISTING_ERROR,
+  CREATE_BOOKING_BEGIN,
+  CREATE_BOOKING_SUCCESS,
   
  
 
@@ -59,9 +58,9 @@ const initialState = {
   totalListings: 0,
   numOfPages: 1,
 
-  order: null,
-  orders: [],
-  totalOrders: 0,
+  booking: null,
+  bookings: [],
+  totalBookings: 0,
 
 }
 const AppContext = React.createContext()
@@ -262,15 +261,15 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
 
-  const createOrder = async (listingData) => {
-    dispatch({ type: CREATE_ORDER_BEGIN });
+  const createBooking = async (listingData) => {
+    dispatch({ type: CREATE_BOOKING_BEGIN });
     try {
       const config = {
         headers: { "Content-Type": "application/json" },
       };
-      const { data } = await authFetch.post('/orders', listingData, config);
-      const { order } = data
-      dispatch({ type: CREATE_ORDER_SUCCESS, payload: {order} });
+      const { data } = await authFetch.post('/bookings', listingData, config);
+      const { booking } = data
+      dispatch({ type: CREATE_BOOKING_SUCCESS, payload: {booking} });
       
     } catch (error) {
       logoutUser();
@@ -281,23 +280,28 @@ const AppProvider = ({ children }) => {
 
 
   const getHostBookings = async () => {
+    const {sort, page, search} = state
+    let url = `/bookings/showHostBookings?page=${page}&sort=${sort}`
+    if (search) {
+      url = url + `&search=${search}`;
+    }
     
-    let url = `/orders/showHostBookings`
 
     dispatch({ type: GET_BOOKINGS_BEGIN })
   
     try {
       const { data } = await authFetch(url)
-      const { orders, totalOrders,  } = data
+      const { bookings, totalBookings, numOfPages  } = data
       
       dispatch({
         type: GET_BOOKINGS_SUCCESS,
         payload: {
-          orders,
-          totalOrders,
+          bookings,
+          totalBookings,
+          numOfPages
         },
       })
-      console.log(orders)
+      console.log(bookings)
     } catch (error) {
         logoutUser();
     }
@@ -345,7 +349,7 @@ const AppProvider = ({ children }) => {
         getListings,
         getUserListings,
         getSingleListing,
-        createOrder,
+        createBooking,
         getHostBookings
     
       }}

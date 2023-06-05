@@ -5,12 +5,12 @@ import Accomodation from './Accomodation'
 import { FaPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 const AccomodationContainer = () => {
-  const { isLoading, page, getUserListings, listings } = useAppContext()
+  const { isLoading, page, getUserListings, listings, search } = useAppContext()
 
   useEffect(() => {
     getUserListings()
     // eslint-disable-next-line
-  }, [page])
+  }, [page, search])
 
   
   if(isLoading) {
@@ -29,10 +29,7 @@ const AccomodationContainer = () => {
   return (
     <>
       <div className=''>
-        <Link to='/add-booking' className='add-bbtn'>
-          <FaPlus className='addb-icon' /> 
-          <label className='addb-text'>Add new place</label>
-        </Link>
+        
         {listings.map((listing) => {
           return (<div className='pl-link' key={listing._id} ><Accomodation key={listing._id} {...listing} /></div>)
         })}

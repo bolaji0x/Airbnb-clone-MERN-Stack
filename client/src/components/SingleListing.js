@@ -16,7 +16,7 @@ const initialState = {
 const SingleListing = () => {
   const {id} = useParams()
 
-  const {isLoading, displayAlert, listing, getSingleListing, createOrder} = useAppContext()
+  const {user, isLoading, displayAlert, listing, getSingleListing, createBooking} = useAppContext()
   const publicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
 
   const [values, setValues] = useState(initialState)
@@ -45,7 +45,7 @@ const SingleListing = () => {
     myForm.set("checkinTime", checkinTime);
     myForm.set("checkoutTime", checkoutTime);
     myForm.set('guestNo', guestNo)
-    createOrder(myForm);
+    createBooking(myForm);
   }
 
   useEffect(() => {
@@ -265,7 +265,8 @@ if (!listing) {
                 </div>
 
 
-                <PaystackButton {...componentProps} className='checkout-btn' />
+                {user && <PaystackButton disabled={isLoading} {...componentProps} className='checkout-btn' />}
+                <div className='lcout-cont'>{!user && <Link to='/signup' className=' lcout-btn'>Login as user to checkout</Link>}</div>
                 {/*(<button type='submit' disabled={isLoading} className='checkout-btn'>Reserve</button> */}
 
                 <p className='cout-text ywct'>You won't charged yet</p>

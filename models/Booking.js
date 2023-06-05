@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const OrderSchema = mongoose.Schema(
+const BookingSchema = mongoose.Schema(
   {
     tax: {
       type: Number,
@@ -36,4 +36,4 @@ const OrderSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Order', OrderSchema);
+module.exports = mongoose.model('Booking', BookingSchema);
