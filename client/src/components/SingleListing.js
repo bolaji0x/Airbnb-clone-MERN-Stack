@@ -34,7 +34,7 @@ const SingleListing = () => {
 
   const handleSubmit = () => {
     //e.preventDefault();
-    setListingId('')
+    //setListingId('')
     const {checkinTime, checkoutTime, guestNo} = values 
     if(!listingId || !checkinTime || !checkoutTime || !guestNo) {
       displayAlert()
@@ -126,8 +126,8 @@ if (!listing) {
   
   return (
     <>
-      <header className='header'>
-        <nav className='nav-container listing-nav'>
+      <header className='header listing-nav'>
+        <nav className='nav-container'>
           <div><LuxeLogo /></div>
 
           <div className='lsearch-cont'>
@@ -173,7 +173,7 @@ if (!listing) {
                   </div>
                 </div>
 
-                <SingleListingImg id={id} images={images} />
+                <SingleListingImg id={id} title={title} images={images} />
                 {/*
                 <div className='box2'><img className='listing-img' src={images[0]} alt={title} /></div>
 

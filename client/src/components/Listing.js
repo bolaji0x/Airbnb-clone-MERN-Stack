@@ -20,7 +20,7 @@ const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
     <div className='listing-content'>
       <div className='each-listing'>
 
-        <SingleFeedImg _id={_id} images={images} />
+        <SingleFeedImg _id={_id} images={images} title={title} />
         <Link to={`/listing/${_id}`} className='listing-img-texts'>
           <span className='title-rating'>
             <h3 className='listing-title'>{title}</h3>

@@ -91,16 +91,27 @@ const getCurrentUserBookings = async (req, res) => {
 };
 
 
-/*
+
 const getHostBookings = async (req, res) => {
   
-  const bookings = await Order.find({ createdBy: req.user.userId }).populate('listingId', null, { createdBy: req.user.userId });
-    
+  const userId = req.user.userId; // Assuming you have user authentication and can access the user's ID
+  try {
+    const listingIds = await Listing.getListingIdsByUser(userId);
 
-  res.status(StatusCodes.OK).json({ bookings, totalBookings: bookings.length });
+    // Find all bookings where the listing's createdBy field is not the current user's ID
+    const bookings = await Booking.find({
+      createdBy: { $ne: userId },
+      listingId: { $in: listingIds },
+    }).populate('listingId');
+
+    res.status(200).json({ bookings, totalBookings: bookings.length });
+  } catch (error) {
+    console.error('Error retrieving bookings:', error);
+    res.status(500).json({ error: 'Failed to retrieve bookings' });
+  }
 };
-*/
 
+/*
 const getHostBookings = async (req, res) => {
   const { sort } = req.query;
   const queryObject = {
@@ -129,7 +140,7 @@ const getHostBookings = async (req, res) => {
   const numOfPages = Math.ceil(totalBookings / limit);
   res.status(StatusCodes.OK).json({ bookings, totalBookings, numOfPages });
 };
-
+*/
 const updateBooking = async (req, res) => {
   const { id: bookingId } = req.params;
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-const SingleFeedImg = ({ _id, images }) => {
+const SingleFeedImg = ({ _id, title, images }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const goToPrevImage = () => {
@@ -21,7 +21,7 @@ const SingleFeedImg = ({ _id, images }) => {
           }}
         >
           {images.map((image, index) => (
-            <img key={index} src={image} alt={`${index}`} />
+            <img key={index} src={image} alt={`${title}${index}`} />
           ))}
         </div>
       </div>

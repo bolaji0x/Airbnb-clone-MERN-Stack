@@ -57,7 +57,12 @@ const ListingSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+// Method to retrieve listing IDs created by a specific user
+ListingSchema.statics.getListingIdsByUser = async function (userId) {
+  const listings = await this.find({ createdBy: userId });
+  const listingIds = listings.map((listing) => listing._id);
+  return listingIds;
+};
 
 module.exports = mongoose.model('Listing', ListingSchema)
 
