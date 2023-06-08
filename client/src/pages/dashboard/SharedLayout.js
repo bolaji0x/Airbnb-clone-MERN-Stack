@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar, NavTabs } from '../../components'
-import { Outlet } from 'react-router-dom'
-
+import { Link, Outlet } from 'react-router-dom'
+import { FaExpandAlt } from 'react-icons/fa'
 const SharedLayout = () => {
   return (
     <main className='account'>
@@ -14,6 +14,10 @@ const SharedLayout = () => {
           <Outlet />
         </div>
       </div>
+      <Link to='/homepage' className='visit-site'>
+        <h3 Link className='vs-link'>Visit Airbnb Site</h3>
+        <FaExpandAlt className='vs-btn' />
+      </Link>
     </main>
   )
 }

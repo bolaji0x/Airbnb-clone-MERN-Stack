@@ -151,6 +151,11 @@ ul, li {
   height: auto;
 }
 
+.bd-grid {
+  display: grid;
+  gap: .1rem;
+}
+
 .bd-container {
   max-width: 1400px;
   width: calc(100% - 2rem);
@@ -781,10 +786,10 @@ input:checked + .slider:before {
 /* =======  Listing Container =========*/
 
 .listings-container {
-  padding-top: 10rem;
+  padding-top: 11.5rem;
 }
 .listing-content {
-  display: grid;
+  isplay: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
   border-radius: var(--borderRadius);
@@ -872,7 +877,7 @@ input:checked + .slider:before {
   border: none;
   outline: none;
   cursor: pointer;
-  color: var(--black-300);
+  color: var(--black-400);
   font-size: 1.5rem;
 }
 
@@ -1588,6 +1593,26 @@ input:checked + .slider:before {
   color: blue;
 } 
 
+/*======= Visit Site ========*/
+
+.visit-site {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 10px;
+}
+
+.vs-link {
+  color: blue;
+}
+
+.vs-btn {
+  color: blue;
+  margin-left: 5px;
+}
+
 @media screen and (min-width: 680px) {
   body {
     margin: 0;
@@ -1693,7 +1718,9 @@ input:checked + .slider:before {
     height: 170px;
   }
 
-
+  .listing-content {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   /* ====== Footer Section=======*/
   

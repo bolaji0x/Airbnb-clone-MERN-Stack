@@ -49,7 +49,7 @@ const ListingContainer = () => {
             </div>
       </div>
 
-      <div className='listing-content'>
+      <div className='listing-content bd-grid'>
           {listings.map((listing) => {
             return (<div key={listing._id} className='pl-div'><Listing key={listing._id} {...listing} /></div>)
           })}

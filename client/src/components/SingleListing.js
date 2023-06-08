@@ -34,7 +34,7 @@ const SingleListing = () => {
 
   const handleSubmit = () => {
     //e.preventDefault();
-    //setListingId('')
+    
     const {checkinTime, checkoutTime, guestNo} = values 
     if(!listingId || !checkinTime || !checkoutTime || !guestNo) {
       displayAlert()
@@ -46,6 +46,7 @@ const SingleListing = () => {
     myForm.set("checkoutTime", checkoutTime);
     myForm.set('guestNo', guestNo)
     createBooking(myForm);
+    setListingId('')
   }
 
   useEffect(() => {
@@ -136,8 +137,10 @@ if (!listing) {
           </div>
 
           <div className='right-nav'>
-            <button type='button' className='ayh-btn each-rn'>Airbnb your home</button>
-            <button type='button' className='each-rn'><FaGlobe className='globe-btn' /></button>
+            <Link to='/signup' className='air-globe-btn'>
+              <button className='ayh-btn each-rn'>Airbnb your home</button>
+              <FaGlobe className='globe-btn' />
+            </Link>
 
             <Link to='/signup' className='bar-user-btn each-rn'>
               <button type='button'><FaBars className='bar-icon' /></button>
@@ -218,7 +221,7 @@ if (!listing) {
   
           <div className='checkout-container'>
               <div className='checkout-head'>
-                <h3 className='cout-price'>${price} <span className='cout-text'>night</span></h3>
+                <h3 className='cout-price'>₦{price} <span className='cout-text'>night</span></h3>
                 <h3 className='listing-link'>1 review</h3>
               </div>
 
@@ -272,13 +275,13 @@ if (!listing) {
                 <p className='cout-text ywct'>You won't charged yet</p>
 
                 <div className='checkout-btm'>
-                  <h3 className='listing-link'>${price} X {stayDuration} nights X Number of guests </h3>
-                  <h3 className='cout-text'>${subtotal}</h3>
+                  <h3 className='listing-link'>₦{price} X {stayDuration} nights X Number of guests </h3>
+                  <h3 className='cout-text'>₦{subtotal}</h3>
                 </div>
 
                 <div className='checkout-btm'>
                   <h3 className='cout-btext'>Total before taxes</h3>
-                  <h3 className='cout-btext'>${subtotal}</h3>
+                  <h3 className='cout-btext'>₦{subtotal}</h3>
                 </div>
               </div>
 

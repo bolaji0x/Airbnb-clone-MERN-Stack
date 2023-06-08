@@ -17,9 +17,7 @@ const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
   const dateRange = `${checkinFormatted} - ${checkoutFormatted}`;
   return (
     <>
-    <div className='listing-content'>
       <div className='each-listing'>
-
         <SingleFeedImg _id={_id} images={images} title={title} />
         <Link to={`/listing/${_id}`} className='listing-img-texts'>
           <span className='title-rating'>
@@ -29,15 +27,12 @@ const Listing = ({_id, title, images, price, checkinTime, checkoutTime}) => {
               <p className='star-text'>4.5</p>
             </span>
           </span>
-          <p className='listing-text'>7,921 kilometeres away</p>
           <p className='listing-text'>{dateRange} </p>
-          <h3 className='listing-price'>₦{price.toLocaleString()} night</h3>
+          <h3 className='listing-price'>₦ {price.toLocaleString()} night</h3>
           
           <div className='heart-btn'><BiHeart className='heart-icon' /></div>
         </Link>
       </div>
-
-    </div>
     </>
   )
 }
