@@ -260,7 +260,7 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
 
-  const createBooking = async (listingData) => {
+  const createBooking = async (listingData, clearFormFields) => {
     dispatch({ type: CREATE_BOOKING_BEGIN });
     try {
       const config = {
@@ -269,7 +269,7 @@ const AppProvider = ({ children }) => {
       const { data } = await authFetch.post('/bookings', listingData, config);
       const { booking } = data
       dispatch({ type: CREATE_BOOKING_SUCCESS, payload: {booking} });
-      
+      clearFormFields()
     } catch (error) {
       logoutUser();
       console.log(error)

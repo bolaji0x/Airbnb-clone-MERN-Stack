@@ -32,6 +32,15 @@ const SingleListing = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const clearFormFields = () => {
+    setValues({
+      checkinTime: '',
+      checkoutTime: '',
+      guestNo: 0
+    });
+    setListingId('')
+  };
+
   const handleSubmit = () => {
     //e.preventDefault();
     
@@ -45,8 +54,8 @@ const SingleListing = () => {
     myForm.set("checkinTime", checkinTime);
     myForm.set("checkoutTime", checkoutTime);
     myForm.set('guestNo', guestNo)
-    createBooking(myForm);
-    setListingId('')
+    createBooking(myForm, clearFormFields);
+    
   }
 
   useEffect(() => {
@@ -221,7 +230,7 @@ if (!listing) {
   
           <div className='checkout-container'>
               <div className='checkout-head'>
-                <h3 className='cout-price'>₦{price} <span className='cout-text'>night</span></h3>
+                <h3 className='cout-price'>₦ {price.toLocaleString()} <span className='cout-text'>night</span></h3>
                 <h3 className='listing-link'>1 review</h3>
               </div>
 
@@ -275,13 +284,13 @@ if (!listing) {
                 <p className='cout-text ywct'>You won't charged yet</p>
 
                 <div className='checkout-btm'>
-                  <h3 className='listing-link'>₦{price} X {stayDuration} nights X Number of guests </h3>
-                  <h3 className='cout-text'>₦{subtotal}</h3>
+                  <h3 className='listing-link'>₦ {price.toLocaleString()} X {stayDuration} nights X Number of guests </h3>
+                  <h3 className='cout-text'>₦{subtotal.toLocaleString()}</h3>
                 </div>
 
                 <div className='checkout-btm'>
                   <h3 className='cout-btext'>Total before taxes</h3>
-                  <h3 className='cout-btext'>₦{subtotal}</h3>
+                  <h3 className='cout-btext'>₦{subtotal.toLocaleString()}</h3>
                 </div>
               </div>
 

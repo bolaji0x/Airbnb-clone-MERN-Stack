@@ -42,7 +42,7 @@ const Booking = ({listingId, checkinTime, checkoutTime, total}) => {
             </div>
             <div className='booking-btm'>
                 <FaIdCard className='card-icon' />
-                <h3 className='bbtm-text'>Total price: ₦{total}</h3>
+                <h3 className='bbtm-text'>Total price: ₦{total.toLocaleString()}</h3>
             </div>
         </div>
       </div>

@@ -1389,6 +1389,8 @@ input:checked + .slider:before {
   margin-bottom: 10px;
   text-decoration: none;
   color: var(--black-200);
+  height: 120px;
+  width: 100%;
 }
 
 .booking-img {
