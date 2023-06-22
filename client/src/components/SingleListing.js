@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import LuxeLogo from './LuxeLogo'
-import { FaBars, FaGlobe, FaSearch, FaShare, FaUserCircle, FaHeart } from 'react-icons/fa'
+import { FaShare, FaHeart } from 'react-icons/fa'
 import { Link, useParams } from 'react-router-dom'
 import { useAppContext } from '../context/appContext'
 import { PaystackButton } from 'react-paystack';
 import SingleListingImg from './SingleListingImg'
+import Navbar from './Navbar'
 
 const initialState = {
   checkinTime: '',
@@ -136,29 +136,9 @@ if (!listing) {
   
   return (
     <>
-      <header className='header listing-nav'>
-        <nav className='nav-container'>
-          <div><LuxeLogo /></div>
-
-          <div className='lsearch-cont'>
-            <input type='search' className='lsearch-input' placeholder='Start your search' />
-            <div className='lsearch-btn'><FaSearch className='lsearch-icon' /></div>
-          </div>
-
-          <div className='right-nav'>
-            <Link to='/signup' className='air-globe-btn'>
-              <button className='ayh-btn each-rn'>Airbnb your home</button>
-              <FaGlobe className='globe-btn' />
-            </Link>
-
-            <Link to='/signup' className='bar-user-btn each-rn'>
-              <button type='button'><FaBars className='bar-icon' /></button>
-              <button type='button'><FaUserCircle className='user-icon' /></button>
-            </Link>
-
-          </div>
-        </nav>
-      </header>
+     <div className='nav-tabs'>
+        <Navbar />
+      </div>
 
 
       <div className='listing-container bd-container'>
@@ -193,10 +173,6 @@ if (!listing) {
               </div>
               
           </div>
-
-          
-        
-
 
 
         <div className='lisitng-grid'>

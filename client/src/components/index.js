@@ -2,6 +2,7 @@ import FormRow from './FormRow'
 import FormRowSelect from './FormRowSelect'
 import Alert from './Alert'
 import Loading from './Loading'
+import LoadingModal from './LoadingModal'
 import ListingContainer from './ListingContainer'
 import Navbar from './Navbar'
 import Footer from './Footer'
@@ -17,6 +18,7 @@ export {
     FormRowSelect,
     Alert,
     Loading,
+    LoadingModal,
     ListingContainer,
     Navbar,
     Footer,

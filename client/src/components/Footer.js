@@ -73,7 +73,7 @@ const Footer = () => {
                 </div>
                 <div className='right-footer'>
                     <FaGlobe className='footer-icon globe-icon' />
-                    <p className='footer-text'>N NGN</p>
+                    <p className='footer-text'>₦ NGN</p>
                     <p className='footer-text'>Support & resources</p>
                     <button onClick={handleToggleClick} className='toggle-fbtn'><FaArrowUp className='footer-icon' /></button>
                 </div>

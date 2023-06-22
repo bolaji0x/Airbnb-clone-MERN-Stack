@@ -5,7 +5,7 @@ import { FaExpandAlt } from 'react-icons/fa'
 const SharedLayout = () => {
   return (
     <main className='account'>
-      <div className='auth-nav'>
+      <div className=''>
         <Navbar />
       </div>
       <div className='dashboard-page'>

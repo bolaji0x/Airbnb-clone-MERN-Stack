@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BiCloudUpload } from 'react-icons/bi'
-import { FormRow, Alert } from '../../components'
+import { FormRow, Alert, LoadingModal } from '../../components'
 import { useAppContext } from '../../context/appContext'
 
 const initialState = {
@@ -57,6 +57,8 @@ const AddListing = () => {
         const previews = files.map((file) => URL.createObjectURL(file));
         setImagePreviews(previews);
     };
+
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -211,6 +213,7 @@ const AddListing = () => {
                 <button disabled={isLoading} type='submit' className='btn login-btn' >Submit</button>
             </form>
         </div>
+        {isLoading && <LoadingModal />}
     </>
   )
 }

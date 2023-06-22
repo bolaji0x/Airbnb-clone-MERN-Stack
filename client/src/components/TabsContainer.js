@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { FaBed, FaBox, FaBuilding,  FaHockeyPuck, FaHotjar, FaLaptopHouse, FaMugHot, FaRedhat, FaUmbrellaBeach, FaWater } from 'react-icons/fa'
 import { BiChevronLeft, BiChevronRight, BiSort } from 'react-icons/bi'
+import SearchContainer from './SearchContainer';
 
 const tabs = [
     { icon: <FaUmbrellaBeach />, label: 'Beachfront' },
@@ -39,6 +40,7 @@ const TabsContainer = () => {
   return (
     <>
     <div>
+        <div className='search-tab'><SearchContainer /></div> 
         <div className='tabs-container bd-container'>
             <div className='l-tabtn'>
             {startIndex > 0 && (

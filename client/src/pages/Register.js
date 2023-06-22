@@ -75,7 +75,7 @@ const Register = () => {
           onSubmit={handleSubmit}
         >
         <h3 className='register-title'>{values.isMember ? 'Log in ' : 'Sign up'}</h3>
-        <h4>Welcome to Airbnb</h4>
+        <h4 className='wlc-text'>Welcome to Airbnb</h4>
         {showAlert && <Alert />}
         {!values.isMember && (
         <div>
@@ -94,7 +94,7 @@ const Register = () => {
             name='lastName'
             placeholder='LastName'
             value={values.lastName}
-            labelText='lastName'
+            labelText='Lastname'
             handleChange={handleChange}
           />
       
@@ -123,7 +123,7 @@ const Register = () => {
           <button className='bregister-btn'>Forgot Password</button>
         </div>
         :   
-        <p className='rmb-info'>We'll Call or text mail you to confirm your mail.Standard message and data rates apply</p>
+        <p className='rmb-info'>We'll Call or text mail you to confirm your mail. Standard message and data rates apply</p>
       }
         
         {/* btn container */}

@@ -13,39 +13,6 @@ cloudinary.config({
 
 const upload = multer({ dest: 'uploads/' });
 
-/*
-const createListing = async (req, res) => {
-    const { title, description, price, address, guestNo, bedroomNo, bedNo, checkinTime, checkoutTime } = req.body;
-    const images = [];
-    if (!title || !description || !price || !images || !address || !guestNo || !bedroomNo || !bedNo || !checkinTime || !checkoutTime) {
-      throw new CustomError.BadRequestError('Please provide all values');
-    }
-    // Upload images to Cloudinary
-    for (const file of req.files) {
-      const result = await cloudinary.uploader.upload(file.path);
-      images.push(result.secure_url);
-    }
-
-    // Create new listing in database
-    const listing = new Listing({
-      title,
-      description,
-      price,
-      images,
-      address,
-      guestNo,
-      bedroomNo, 
-      bedNo,
-      checkinTime,
-      checkoutTime,
-      createdBy: req.user.userId
-    });
-    await listing.save();
-    res.status(StatusCodes.CREATED).json({ listing }); 
-};
-
-*/
-
 const createListing = async (req, res) => {
   const { title, description, price, address, guestNo, bedroomNo, bedNo, checkinTime, checkoutTime } = req.body;
 
